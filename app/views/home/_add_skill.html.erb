@@ -1,0 +1,10 @@
+
+  <td>
+    <%= f.text_field :name, :placeholder => "Name" %>
+  </td>
+  <td>
+    <%= f.select :proficiency, options_for_select((0..10).step(1).to_a.map{|s| ["#{s}", s]}) %>
+  </td>
+  <td><%= f.submit "Save", :class=>"btn btn-primary save" %></td>
+  <td><a href="javascript:void(0)" class="cancel-btn btn">Cancel</a></td>
+  

@@ -1,0 +1,65 @@
+<div id="show_job" style="margin-left: 73px;">
+    <%= link_to 'My Jobs' %> |
+    <%= link_to 'Opportunities' %> |
+    <%= link_to 'Post a Job', new_job_path %>
+</div>
+
+<h3 style="margin-left: 73px;color: #508514;">My Jobs</h3>
+<% if @job.present? %>
+    <% @job.each do |job| %>
+        <div id="job_list">
+            <%= link_to "#{job.title}" %>
+            <div class="btn-group">
+              <!-- Link or button to toggle dropdown -->
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Action
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'View Job', job %></li>
+                <li><%= link_to 'Edit Job', edit_job_path(job) %></li>
+                <li class="divider"></li>
+                <li><%= link_to 'Delete Job', job, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+            </div><br />
+            <%= job.description.split('.')[0] %>
+        </div>
+        
+        <div class="clear"></div>
+    <% end %>
+    <div class="p-spacer"></div>
+ <% else %>
+    <h3 style="margin-left: 73px;" class="muted">Currently you haven't posted any job. </h3>
+ <% end %>
+
+<!-- <h1>Listing jobs</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Subcategory</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%# @jobs.each do |job| %>
+  <tr>
+    <td><%#= job.user_id %></td>
+    <td><%#= job.title %></td>
+    <td><%#= job.description %></td>
+    <td><%#= job.category_id %></td>
+    <td><%#= job.subcategory_id %></td>
+    <td><%#= link_to 'Show', job %></td>
+    <td><%#= link_to 'Edit', edit_job_path(job) %></td>
+    <td><%#= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<%# end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Job', new_job_path %>
+ -->

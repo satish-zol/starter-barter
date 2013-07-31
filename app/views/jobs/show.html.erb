@@ -1,0 +1,37 @@
+<%#= @job.each do |job| %>
+  <!-- <div>
+    <%#= job.title %>
+    <%#= job.description %>
+  </div> -->
+<%# end %>
+<p id="notice"><%#= notice %></p>
+<h3 style="margin-left: 70px;color: #508514;">View job</h3>
+<div style="margin-left: 70px;"> 
+<p>
+  <b>User:</b>
+  <%= @job.user_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @job.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @job.description %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @job.category_id %>
+</p>
+
+<p>
+  <b>Subcategory:</b>
+  <%= @job.subcategory_id %>
+</p>
+</div>
+
+<%#= link_to 'Edit', edit_job_path(@job) %> 
+<%#= link_to 'Back', jobs_path %>

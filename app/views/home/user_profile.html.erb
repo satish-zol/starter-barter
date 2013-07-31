@@ -1,0 +1,11 @@
+<article id="content">
+	<section>
+		<div class="wrapper pad_bot2">
+			<figure class="left marg_right1">
+				<% if user_signed_in? %>
+					<%= render :partial => 'profile', :locals => {:user => current_user }%>
+				<% end %>
+			</figure>
+		</div>
+	</section>
+</article>

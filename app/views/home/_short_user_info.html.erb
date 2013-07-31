@@ -1,0 +1,73 @@
+<%= form_for(current_user, :url => update_user_info_path, :html => {:class => "form-horizontal", :method => :put, :remote => true }) do |f| %>
+
+  <div id= "modal_user_info" class="modal hide fade" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3>Basic Profile Information</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group">
+        <%= f.label :first_name, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_field :first_name %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :iam, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_field :iam %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :iamlookingfor, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_field :iamlookingfor %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :last_name, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_field :last_name %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :Country, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.collection_select(:country_id, Country.all, :id, :name ) %>
+        </div>
+      </div>
+        
+      <%= f.fields_for :profile, current_user.profile do |profile_field| %>
+        <div class="control-group">
+          <%= profile_field.label :tagline, :class =>"control-label" %>
+          <div class="controls">
+            <%= profile_field.text_field :tagline %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= profile_field.label :city, :class =>"control-label" %>
+          <div class="controls">
+            <%= profile_field.text_field :city %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= profile_field.label :state, :class =>"control-label" %>
+          <div class="controls">
+            <%= profile_field.text_field :state %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+      <a href="#" ><%= f.submit "Update", :class=>"btn btn-primary" %></a>
+    </div>
+  </div>
+<% end %>
+
+
+
+     
+
+<%#= link_to "Back", edit_user_info_path, :class => "back", :id => "back_to_previous", :remote => true %>
+

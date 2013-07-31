@@ -1,0 +1,14 @@
+<%#= form_for "job" do |f| %>
+<%= fields_for job do |fo| %>
+<%#= debug @edit_subcat[0].name %>
+  <div class="control-group">
+    <%= fo.label :subcategory_id, :class =>"control-label" %>
+    <div class="controls">
+
+      	<%#= f.input_field :subcategory_id, options_for_select(@subcategories.collect{ |s| [s.name,s.id]})  %>
+    
+      	<%= fo.select :subcategory_id, options_for_select(@subcategories.collect{ |s| [s.name, s.id] }, @edit_subcat ) %>
+
+    </div>
+  </div> 
+<% end %>

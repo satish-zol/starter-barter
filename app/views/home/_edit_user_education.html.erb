@@ -1,0 +1,71 @@
+<%= form_for(education , :url => update_user_info_path, :html => {:class => "form-horizontal", :remote => true}) do |f| %>
+
+	<div id="modal_user_edit_education_<%= education.id %>" class="modal hide fade" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3>Update Education</h3>
+    </div>	
+	  <div class="modal-body">
+        <%= hidden_field_tag :id, id %>	
+        <div class="control-group">
+          <%= f.label :school_name, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :school_name %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :field_of_study, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :field_of_study %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :degree, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :degree %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :grade, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :grade %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :activities, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_area :activities %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :notes, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_area :notes %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      	<a href="#" class="btn" data-dismiss="modal">Close</a>
+      	<a href="#"><%= f.submit "Update", :class=>"btn btn-primary" %></a>
+      </div>  
+  	</div>  	
+<% end %>
+	<%#= hidden_field_tag :id, id %>
+	<%#= f.label :school_name %>
+	<%#= f.text_field :school_name %>
+	<%#= f.label :field_of_study %>
+	<%#= f.text_field :field_of_study %>
+	<%#= f.label :degree %>
+	<%#= f.text_field :degree %>
+	<%#= f.label :grade %>
+	<%#= f.text_field :grade %>
+	<%#= f.label :activities %>
+	<%#= f.text_area :activities %>
+	<%#= f.label :notes %>
+	<%#= f.text_area :notes %>
+	<%#= f.label :start_date, "Start Year" %>
+	<%#= f.select :start_date, options_for_select((1980..2013).step(1).to_a.map{|s| ["#{s}", s]}) %>
+	<%#= f.label :end_date, "End Year" %>
+	<%#= f.select :end_date, options_for_select((1981..2013).step(1).to_a.map{|s| ["#{s}", s]}) %>
+	<%#= f.submit "update" %>
+<%#= link_to "Back", edit_user_info_path, :class => "back", :id => "back_to_previous", :remote => true %>

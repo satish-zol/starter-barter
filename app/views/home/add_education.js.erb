@@ -1,0 +1,10 @@
+<% if @education %>
+	$('#experience_company_name').val('');
+	$('#experience_title').val('');
+	$('#experience_location').val('');
+	$('#experience_description').val('');
+	$('#modal_add_user_education').modal('hide');
+	// $('.in').hide();
+	$("#show_user_education").html('<%= escape_javascript(render :partial => 'home/show_short_user_education', :locals => {:user => current_user} ).html_safe %>');
+	alert('Education has been created successfully');
+<% end %>

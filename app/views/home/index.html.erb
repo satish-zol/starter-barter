@@ -1,0 +1,21 @@
+
+<!-- content -->
+<article id="content">
+	<section>
+		<div class="wrapper pad_bot2">
+			<section class="col2">
+				<%= render :partial => 'home/content' %>
+			</section>
+			<figure class="left marg_right1">
+				<% if !user_signed_in? %>
+				<%= render :partial => 'devise/sessions/new_session' %>
+				<% else %>
+				<%#= render :partial => 'devise/registrations/edit_profile', :locals => {:user => @user } %>
+				<%#= render :partial => 'profile', :locals => {:user => current_user }%>
+				<%= render :partial => 'jobs', :locals => {:user => current_user }%>
+				<% end %>
+			</figure>
+		</div>
+	</section>
+</article>
+<!-- / content -->

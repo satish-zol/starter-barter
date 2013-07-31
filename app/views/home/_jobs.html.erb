@@ -1,0 +1,52 @@
+ <div class="eol-layout-s1" id="p-menu">
+	<div id="profimeImage">
+		<% if current_user.profile_picture.present? %>
+			<%= image_tag current_user.profile_picture , :alt => "Profile Picture", :title => "Change?", :style => "border: solid 1px #CCC; max-width:160px; max-height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" %>
+			<% else if current_user.facebook_image.present? %>
+				<%= image_tag current_user.facebook_image , :alt => "Profile Picture", :style => "border: solid 1px #CCC; max-width:160px; max-height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" %>
+			<% else %>
+				<%= image_tag('default_profile_image.png', :alt => "Profile Picture", :title => "Change?", :style => "border: solid 1px #CCC; max-width:160px; max-height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" ) %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="clear"></div>
+	<div></div>
+ </div>
+<div class="eol-layout-s4" id="p-content">
+	<h3 style="color: #508514;margin-left: 32px;margin-top: -25px;">Jobs</h3>
+	<% if @jobs.present? %>
+	    <% @jobs.each do |job| %>
+	        <div id="job_list_home">
+	            <%= link_to "#{job.title}" %>
+	            <div class="btn-group">
+	              <!-- Link or button to toggle dropdown -->
+	              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Action
+	                <span class="caret"></span>
+	              </a>
+	              <ul class="dropdown-menu">
+	                <li><%= link_to 'View Job', job %></li>
+	                <li><%= link_to 'Edit Job', edit_job_path(job) %></li>
+	                <li class="divider"></li>
+	                <li><%= link_to 'Delete Job', job, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+	              </ul>
+	            </div><br />
+	            <%= job.description.split('.')[0]%>
+	            <div class="p-spacer"></div>
+	            <%# if job.user_id != current_user.id  %>
+	        	    <!-- <div style="float:right;">
+	        			<button class="btn btn-small btn-success" type="button">Apply</button>
+	        		</div> -->
+	        	<%# end %>
+				<div class="clear"></div>
+	        </div>
+	        <div class="clear"></div>
+	    <% end %>
+	    <div class="p-spacer"></div>
+	 <% else %>
+	    <h3 style="margin-left: 73px;" class="muted">Currently you don't have any job. </h3>
+	 <% end %>
+	 <div class="p-spacer"></div>
+	 <div class="clear"></div>
+ </div>
+ <div class="p-spacer"></div>
+ <div class="clear"></div>

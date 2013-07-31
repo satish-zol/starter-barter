@@ -1,0 +1,17 @@
+<div id="p-overview" class="p-layout-s3">
+  <%#= link_to "Edit", "#", :class => "edit-btn", :id => "edit_overview", :title => "Edit Basic Information", :style => "position: relative; z-index: 1;margin-top:12px;", :remote => true %>
+  
+  <% if show_current_user?(@user || current_user)  %>
+  <a href="#modal_user_overview" class="edit-btn" data-toggle="modal" style="position: relative; margin-top:12px;" >Edit</a>
+  <% end %>
+  <%= render "edit_profile_overview" %>
+  <h2 class="p-header padding_overview"> Overview </h2>
+  <div class="clear"></div>
+  <p class="p-about-txt" style="margin: 10px 0px;">
+	<%= user.profile.overview if user.profile.overview %>
+  </p>
+</div>
+
+
+
+

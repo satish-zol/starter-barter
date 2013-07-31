@@ -1,0 +1,63 @@
+<div class="p-layout-s3">
+	<% if show_current_user?(@user || current_user) %>
+		
+		<a href="#modal_user_info" class="edit-btn" data-toggle="modal" style="position: relative; margin-top:12px;" >Edit</a> 
+		
+	<% end %>
+	
+	<%= render "short_user_info" %>
+
+
+	<div class="p-title-div">
+		<h1 id="p-title" class="fn left padding_username"><%= "#{user.first_name} #{user.last_name}".titleize if user.present? %></h1>
+		
+		<div class="clear"></div>
+		<br />
+		<span class="p-summary-tagline title"><%= user.profile.tagline if user.profile %></span>
+		<br />
+		<span class="p-summary-tagline title">I am :-</span>
+		<span class="p-summary-tagline title"><%= user.iam if user.iam.present? %></span>
+		<br />
+		<span class="p-summary-tagline title">I am looking for :-</span>
+		<span class="p-summary-tagline title"><%= user.iamlookingfor if user.iamlookingfor.present? %></span>
+		<br />
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="p-summary-location adr">
+	<div class="left">
+		<% if !user.provider.present? %>
+			<% if user.country.present? %>
+			<span class="country-name">
+				<%= user.country.present?  ? user.country.name : "" %>,
+			</span> 
+			<% end %>
+		<% end %>
+		&nbsp<%= user.hometown if user.hometown.present? %>
+	</div>
+	<div class="left">
+		<% if !user.provider.present? %>
+			<% if user.profile.city.present? %>
+			<span class="locality">
+					<%= user.profile.city %>
+			</span> -
+			<% end %>
+			<span class="region">
+				<%= user.profile.state if user.profile.state.present? %>
+			</span>
+		<% end %>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="p-spacer"></div>
+<div class="clear"></div>
+
+ <script>
+ 	// $("#edit_username").click(function(){
+ 	// 	$("#p-hd").html('<%= escape_javascript(render :partial => 'home/short_user_info', :locals => {:user => @user_fname_lname} ).html_safe %>');
+ 	// });
+
+</script>
+
+

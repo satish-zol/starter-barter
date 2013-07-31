@@ -1,0 +1,4 @@
+<% if @education %>
+	$("#show_user_education").html('<%= escape_javascript(render :partial => 'home/show_short_user_education', :locals => {:user => current_user} ).html_safe %>');
+	//alert('Experience has been deleted successfully');
+<% end %>

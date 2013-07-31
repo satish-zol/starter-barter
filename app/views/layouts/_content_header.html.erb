@@ -1,0 +1,93 @@
+<div class="wrapper">
+	<nav>
+		<ul id="top_nav">
+			<li>
+				<a href="Support.html">Support</a>
+			</li>
+			<li>
+				<a href="#">FAQs</a>
+			</li>
+			<li class="end">
+				<a href="#">Sitemap</a>
+			</li>
+		</ul>
+	</nav>
+	<span class="date"><%= DateTime.now.strftime('%m %d %Y')%></span>
+</div>
+<div class="logged_in_user">
+	<% if user_signed_in? %>
+		<div class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: blue;"><%= "#{current_user.first_name.titleize} "+"#{ current_user.last_name.titleize}" %> <b class="caret"></b>
+	        </a>
+	        <ul class="dropdown-menu">
+	        	<li><%= link_to "Profile", :controller => "home", :action => "user_profile" %></li>
+	            <li class="divider"></li> 
+	            <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete', :id => "sign_out" %></li>
+	        </ul>
+        </div>
+    <% end %>          
+</div>
+<div class="wrapper2">
+	<a href="/" id="logo"></a>
+</div>
+
+<!-- search field -->
+
+<div id="search" >
+	<%= search_form_for @q, :url => search_path,
+                        :html => {:method => :post} do |f| %>
+	  
+	  <%= f.text_field :name_cont, :class=>"input-medium search-query" %>
+	  <%= f.submit "Search", :class=>"btn" %>
+	<% end %>
+</div>
+<div class="clear"></div>
+<!-- Post a job -->
+<div id="job">
+	<%= link_to "Jobs", jobs_path, :style => "color: #508514;", :class => "btn" %>
+</div>
+	
+<div id="nav">
+	<ul class="level1">
+		<li class="level1-li first">
+			<a href="/" style="font-weight:bold;font-size:14px;color:white;">Home</a>
+		</li>
+		<li class="level1-li">
+			<%= link_to "About Us", about_us_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+		</li>
+		<li class="level1-li">
+			<%= link_to "Services", services_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+		</li>
+		<li class="level1-li">
+			<%= link_to "Contact Us", contact_us_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+		</li>
+		<% if !user_signed_in? %>
+			<li class="level1-li">
+					<%= link_to 'Register', new_user_registration_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+			</li>
+		<% end %>
+	</ul>
+</div>
+<div class="clear"></div>
+<% if !current_user.present? %>
+<div class="wrapper">
+	<p style="float:right;color:white;font-size:16px;margin-top:100px;margin-left:-180px;font-weight:bold;">
+		Achieve your dreams without money.Barter your
+		<br />
+		skills
+		<br />
+		<br />
+		- Specify what you need
+		<br />
+		- Skills snd work description
+		<br />
+		- Geographic Preferences
+		<br />
+		- Time Zone Preference
+	</p>
+	
+	<div id="gallery">
+		<a href="ourmission.html" class="button right" style="margin-top:80px;">Get Started Now</a>
+	</div>
+</div>
+<% end %> 

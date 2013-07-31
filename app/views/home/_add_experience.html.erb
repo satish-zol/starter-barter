@@ -1,0 +1,53 @@
+	<%#= hidden_field_tag :id, id %>
+	<div id="modal_add_user_experience" class="modal hide fade" aria-hidden="true">
+    <%= form_for(:experience , :url => add_experience_path, :html => {:class => "form-horizontal", :remote => true}) do |f| %>
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>Add Experience</h3>
+      </div>	
+      <div class="modal-body">
+        <%#= hidden_field_tag :id, id %>	
+        <div class="control-group">
+          <%= f.label :company_name, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :company_name %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :title, "Position", :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :title %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :location, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :location %>
+          </div>
+        </div>
+        <!-- <div class="control-group">
+          <%#= f.label :start_date, :class =>"control-label" %>
+          <div class="controls">
+            <%#= f.select :start_date, options_for_select((1970..Date.today.year).step(1).to_a.map{|s| ["#{s}", s]}) %>
+          </div>
+        </div> -->
+        <%#= f.label :start_date, "Start Year" %>
+  <%#= f.select :start_date, options_for_select((1980..2013).step(1).to_a.map{|s| ["#{s}", s]}) %>
+  <%#= f.label :end_date, "End Year" %>
+  <%#= f.select :end_date, options_for_select((1981..2013).step(1).to_a.map{|s| ["#{s}", s]}) %>
+        <div class="control-group">
+          <%= f.label :description, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_area :description %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#"><%= f.submit "Save", :class=>"btn btn-primary" %></a>
+      </div>  
+    <% end %>
+  </div>  	
+
+<%#= link_to "Back", edit_user_info_path, :class => "back", :id => "back_to_previous", :remote => true %>
