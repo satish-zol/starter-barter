@@ -1,4 +1,4 @@
-Testing
+
 
 == Welcome to Rails
 
