@@ -1,18 +1,23 @@
 @import "twitter/bootstrap/bootstrap";
-body { padding-top: 60px; }
-//@import "twitter/bootstrap/responsive";
+@import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
 @iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
 @iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
 //       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
 
+// Font Awesome
+@import "fontawesome";
 
-
-
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -24,95 +29,3 @@ body { padding-top: 60px; }
 //
 // Example:
 // @linkColor: #ff0000;
-
-.span8 {
-  width: 100%;
-}
-
-#skill_proficiency{
-	width: 100px;
-}
-.add-skill-form{
-	width: 100px;	
-}
-.edit-skill-form{
-	width: 100px;		
-}
-.edit-partial{
-	width: 100px;			
-}
-#div-name{
-	float: left;
-}
-#div-prof{
-	position: absolute;
-    margin-left: 223px;	
-    margin-top: -40px;
-}
-#div-sub{
-	position: absolute;
-    margin-left: 326px;	
-    margin-top: -39px;
-}
-#div-can{
-	position: absolute;
-    margin-left: 387px;
-    margin-top: -40px;	
-}
-#p-title-recommend{
-	font-size: 15px;
-	padding: 4px;
-}
-#job{
-	position: absolute;
-    margin-left: 910px;
-    margin-top: -43px;
-    font-weight:bold;
-    font-size:14px;
-}
-#show_job{
-	font-weight:bold;
-    font-size:14px;
-}
-#job_list{
-	border: 1px solid #D7D7D7;
-	font-size: 18px;
-    height: 75px;
-    margin-top: 20px;
-    margin-left: 73px;
-    padding: 3px;
-    width: 400px;
-}
-.new_job{
-	background-color: #EEEAEE;
-    border-radius: 6px 6px 6px 6px;
-    color: inherit;
-    font-size: 18px;
-    padding: 10px;
-    width: 58%;
-    
-}
-#job_description{
-	width: 500px;
-	height: 200px;
-	margin-top: 3px;
-}
-#job_title{
-	width: 500px;
-	height: 20px;
-	margin-top: 3px;
-}
-.logged_in_user{
-    float: right;
-    margin-top: -21px;
-    margin-right: 164px;
-}
-#job_list_home{
-    border: 1px solid #D7D7D7;
-    font-size: 18px;
-    
-    margin-top: 20px;
-    margin-left: 34px;
-    padding: 3px;
-    width: 400px;   
-}
