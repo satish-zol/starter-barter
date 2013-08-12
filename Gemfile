@@ -18,6 +18,7 @@ gem 'letsrate'
 gem "twitter-bootstrap-rails"
 gem 'libv8'
 gem "cancan"
+gem 'less-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
