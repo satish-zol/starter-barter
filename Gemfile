@@ -16,14 +16,13 @@ gem 'omniauth-twitter'
 gem 'recaptcha', :require => "recaptcha/rails"
 gem 'letsrate'
 gem "twitter-bootstrap-rails"
-gem 'sass-rails',   '~> 3.2.3'
 gem 'libv8'
 gem "cancan"
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  #gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes

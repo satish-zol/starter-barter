@@ -7,30 +7,31 @@
 <p id="notice"><%#= notice %></p>
 <h3 style="margin-left: 70px;color: #508514;">View job</h3>
 <div style="margin-left: 70px;"> 
-<p>
-  <b>User:</b>
-  <%= @job.user_id %>
-</p>
+  <p>
+    <b>Title:</b>
+    <%= @job.title %>
+  </p>
 
-<p>
-  <b>Title:</b>
-  <%= @job.title %>
-</p>
+  <p>
+    <b>Description:</b>
+    <%= @job.description %>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%= @job.description %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @job.category_id %>
-</p>
-
-<p>
-  <b>Subcategory:</b>
-  <%= @job.subcategory_id %>
-</p>
+  <p>
+  <% if @job.user_id != current_user.id %>
+    <% if is_applied?(@job) %>
+      <div style="color: green;font-size:16px;font-weight:bold;">
+        <%= "You have alerady applied for this job." %>
+      </div>
+    <% else %>
+      <div style="float:left;", class="btn btn-success" >
+        <%= link_to "Apply", :controller => "appliedjobs", :action => "applied_to_job", :job_id => @job.id %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  </p>
+  <br>
 </div>
 
 <%#= link_to 'Edit', edit_job_path(@job) %> 

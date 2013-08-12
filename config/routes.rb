@@ -1,7 +1,7 @@
 StartBarter::Application.routes.draw do
   
   resources :jobs
-
+  resources :appliedjobs
   match '/rate' => 'rater#create', :as => 'rate'
 
   match '/about_us', :to => "static_pages#about_us"
@@ -26,7 +26,7 @@ StartBarter::Application.routes.draw do
   match 'search' => 'home#search', :via => [:get, :post], :as => :search
   match '/jobs/select_subcategory/:id' => 'jobs#select_subcategory'
   match '/home/user_profile' => 'home#user_profile'
-
+  match '/applied_to_job' => 'appliedjobs#applied_to_job'
   devise_for :users,
       :controllers => { 
       :sessions           => 'devise/sessions', 

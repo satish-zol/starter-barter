@@ -8,7 +8,7 @@
 <% if @job.present? %>
     <% @job.each do |job| %>
         <div id="job_list">
-            <%= link_to "#{job.title}" %>
+            <%= link_to "#{job.title}", job, :style => "color:cornflowerblue;" %>
             <div class="btn-group">
               <!-- Link or button to toggle dropdown -->
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Action

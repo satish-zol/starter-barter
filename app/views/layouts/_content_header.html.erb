@@ -43,9 +43,11 @@
 </div>
 <div class="clear"></div>
 <!-- Post a job -->
-<div id="job">
-	<%= link_to "Jobs", jobs_path, :style => "color: #508514;", :class => "btn" %>
-</div>
+<% if user_signed_in? %>
+	<div id="job">
+		<%= link_to "Jobs", jobs_path, :style => "color: #508514;", :class => "btn" %>
+	</div>
+<% end %>
 	
 <div id="nav">
 	<ul class="level1">
