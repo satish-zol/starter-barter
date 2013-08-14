@@ -102,6 +102,27 @@ class User < ActiveRecord::Base
                       )
       user.skip_confirmation!
       user.save!
+    else
+      user.update_attributes(username:auth.extra.raw_info.name.present? ? auth.extra.raw_info.name : "",
+                      first_name:auth.extra.raw_info.first_name.present? ? auth.extra.raw_info.first_name : "",
+                      last_name:auth.extra.raw_info.last_name.present? ? auth.extra.raw_info.last_name : "",
+                      provider:auth.provider.present? ? auth.provider : "",
+                      uid:auth.uid.present? ? auth.uid : "",
+                      email:auth.info.email,
+                      password:Devise.friendly_token[0,20],
+                      about_me:auth.extra.raw_info.bio.present? ? auth.extra.raw_info.bio : "",
+                      dob:auth.extra.raw_info.birthday.present? ? auth.extra.raw_info.birthday : "",
+                      hometown:auth.extra.raw_info.hometown.present? && auth.extra.raw_info.hometown.name.present? ? auth.extra.raw_info.hometown.name : "",
+                      location:auth.extra.raw_info.location.present? && auth.extra.raw_info.location.name.present? ? auth.extra.raw_info.location.name : "",
+                      relationships:auth.extra.raw_info.relationship_status.present? ? auth.extra.raw_info.relationship_status : "",
+                      gender:auth.extra.raw_info.gender.present? ? auth.extra.raw_info.gender : "",
+                      organisation:auth.extra.raw_info.work.present? && auth.extra.raw_info.work[0].employer.present? ?  auth.extra.raw_info.work[0].employer.name : "",
+                      designation:auth.extra.raw_info.work.present? && auth.extra.raw_info.work[0].position.present? ? auth.extra.raw_info.work[0].position.name : "",
+                      facebook_url:auth.info.urls.Facebook.present? ? auth.info.urls.Facebook : "" ,
+                      educational_details:auth.extra.raw_info.education.present? ? auth.extra.raw_info.education[1].school.name : "" ,
+                      profile_picture:auth.info.image.present? ? auth.info.image : "",
+                      facebook_image:auth.info.image.present? ? auth.info.image : "" 
+                      )
     end
     user
   end

@@ -5,7 +5,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "admin@start-barter.com"
-  config.omniauth :facebook, "439259282790011", "cf1174d791b5c6bc58e20dfce4319d94", :scope => 'email, user_about_me, user_birthday, user_hometown, user_location, user_relationships, user_status, user_work_history, user_groups, read_stream, offline_access, read_friendlists', :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
+  config.omniauth :facebook, "274580322644956", "147c0405c34a77829d19b932bca10a1d", :scope => 'email, user_about_me, user_birthday, user_hometown, user_location, user_relationships, user_status, user_work_history, user_groups, read_stream, offline_access, read_friendlists', :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
   config.omniauth :linkedin, "mglget4u84cz", "Ub2dwyLAJ5EUj4Dj", :scope => 'r_basicprofile r_fullprofile r_emailaddress r_contactinfo rw_groups', :fields => ["id", "email-address", "first-name", "last-name", "headline", "summary", "industry", "picture-url", "public-profile-url", "location", "phone-numbers", "im-accounts", "main-address", "positions", "educations", "languages", "skills", "date-of-birth", "group-memberships"]
   config.omniauth :twitter, "iZfBh2wc2tnZU70n8mBrJw", "MS9SJV1fz8WMbIQAtQnfR1Qes3pjsqJPaOW2zddA"
   # Configure the class responsible to send e-mails.
