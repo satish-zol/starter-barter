@@ -16,6 +16,6 @@
 //= require jquery-fileupload
 //= require_tree .
 
-setTimeout("$('.flash-notice').html('');", 5000);
+
 
 
