@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable,:omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
   #attr_accessor :password, :password_confirmation, :current_password
@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :groups
   has_many :jobs
   belongs_to :country
+  has_many :appliedjobs, :through => :jobs
   
   #Image Uploader
   mount_uploader :profile_picture, ProfilePictureUploader
@@ -77,6 +78,7 @@ class User < ActiveRecord::Base
   
   #for facebook integration with omniauth
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    #debugger
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     
     unless user
@@ -121,7 +123,7 @@ class User < ActiveRecord::Base
                       facebook_url:auth.info.urls.Facebook.present? ? auth.info.urls.Facebook : "" ,
                       educational_details:auth.extra.raw_info.education.present? ? auth.extra.raw_info.education[1].school.name : "" ,
                       profile_picture:auth.info.image.present? ? auth.info.image : "",
-                      facebook_image:auth.info.image.present? ? auth.info.image : "" 
+                      facebook_image:auth.info.image.present? ? auth.info.image : ""
                       )
     end
     user
@@ -214,6 +216,10 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def self.applied_job_user(user)
+    find_by_sql(["SELECT * FROM start_barter_development.users u left join appliedjobs a on a.user_id = u.id where a.job_id = #{user}"]) 
   end
   
 private

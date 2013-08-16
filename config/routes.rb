@@ -27,6 +27,8 @@ StartBarter::Application.routes.draw do
   match '/jobs/select_subcategory/:id' => 'jobs#select_subcategory'
   match '/home/user_profile' => 'home#user_profile'
   match '/applied_to_job' => 'appliedjobs#applied_to_job'
+  match '/people_applied_for_job' => 'jobs#people_applied_for_job'
+  
   devise_for :users,
       :controllers => { 
       :sessions           => 'devise/sessions', 

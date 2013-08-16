@@ -83,7 +83,6 @@ class HomeController < ApplicationController
   end
 
   def show_profile
-    #debugger
     index
     # @show_recomm = []
     # @users = User.all

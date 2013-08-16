@@ -31,6 +31,12 @@
       </div>
       <br/>
       <div class="control-group">
+        <%= f.label :in_return, "In return i will provide", :class =>"control-label" %><br/>
+        <div id="job_title">
+          <%= f.text_field :in_return, :id => "job_title"%>
+        </div>
+      </div>
+      <div class="control-group">
         <%= f.label :category_id, "Category", :class =>"control-label" %>
         <div>
           <%= f.select :category_id, options_for_select(Category.all.collect {|p| [ p.name, p.id ] }, @job.category_id), :prompt => 'Select One' %>

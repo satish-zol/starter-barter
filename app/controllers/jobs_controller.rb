@@ -13,6 +13,10 @@ class JobsController < ApplicationController
     end
   end
 
+  def people_applied_for_job
+    @users = User.applied_job_user(params[:job])
+  end
+
   def select_subcategory
     #debugger 
     #@job = Job.new 
@@ -24,7 +28,8 @@ class JobsController < ApplicationController
   def show
     
     @job = Job.find(params[:id])
-
+    @applied_job_count=Appliedjobs.find_all_by_job_id(params[:id]).count
+    @users = User.applied_job_user(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @job }
