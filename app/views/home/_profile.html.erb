@@ -266,7 +266,7 @@
 		<h6 class="p-header">Identity</h6>
 		<div class="identity-item-first">
 			<div class="identity-item-label">Username</div>
-			<div class="identity-item-value"><%= user.username if user.username.present? %></div>
+			<div class="identity-item-value"><%= "#{user.first_name} #{user.last_name}".titleize if user.present? %></div>
 			<div class="clear"></div>
 		</div>
 		<div class="identity-item">
