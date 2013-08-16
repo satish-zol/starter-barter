@@ -1,0 +1,17 @@
+<div id="recommendsearchresults">
+	<%#= debug @show_recomm %>
+	<% @users.each do |applied_user|  %>
+		<%# debugger %>
+		 <div style="border-bottom: 1px solid #D7D7D7;">
+			<%= image_tag applied_user.profile_picture.present? ? applied_user.profile_picture : 'default_profile_image.png', :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:40px; height:40px; float: left; " %>
+			<div style="display: inline-block; padding: 1px;">
+				<h2 id="p-title-recommend" class="fn left padding_username"><%= link_to "#{applied_user.first_name} #{applied_user.last_name}".titleize, :controller => 'home', :action => 'show_profile', :id => applied_user.id %></h2>
+
+				<span class="p-summary-tagline title" style="display: block; padding: 4px;">
+					<%= applied_user.iam if applied_user.present? %></span>
+			</div>
+		</div>
+		<br />
+		<div class="clear"></div>
+	<% end %>
+</div>
