@@ -18,8 +18,7 @@ gem 'letsrate'
 gem "twitter-bootstrap-rails"
 gem 'libv8'
 gem "cancan"
-gem 'less-rails'
-
+gem "less-rails"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -28,7 +27,6 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
-  gem "less-rails" 
   gem 'uglifier', '>= 1.0.3'
 end
 

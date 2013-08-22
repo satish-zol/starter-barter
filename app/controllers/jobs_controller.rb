@@ -16,6 +16,29 @@ class JobsController < ApplicationController
   def people_applied_for_job
     @users = User.applied_job_user(params[:job])
   end
+  
+  #Method for accepting and declining the proposal. 
+  def accepted_proposal
+    
+    if params[:commit] == "Accept"
+      @accepted_proposal = UsersJobs.new(:job_id => params[:job_id], :user_id => params[:user_id], :deal => true)
+      if @accepted_proposal.save
+        @delete_jobs = Appliedjobs.where(:job_id => params[:job_id])
+
+        @delete_jobs.each do |delete_job|
+          delete_job.delete if params[:user_id] != delete_job.user_id
+        end
+        redirect_to :back, notice: 'You accept this proposal.'
+      end
+    else
+      
+      @rejected_proposal = Appliedjobs.where(:job_id => params[:job_id], :user_id => params[:user_id])
+      @rejected_proposal.each do |reject|
+        reject.delete
+      end
+      redirect_to :back, notice: 'You decline this proposal.' 
+    end
+  end
 
   def select_subcategory
     #debugger 

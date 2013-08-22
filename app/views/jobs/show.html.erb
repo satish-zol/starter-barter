@@ -5,9 +5,8 @@
     <p>
       <h3 style="color: #508514;">
         <%= @job.title %>
-      
       </h3>
-       
+      <div style="float:right;">Posted on <%= distance_of_time_in_words(Time.now, @job.created_at, include_seconds: true) %>  ago</div>
     </p>
     <br>
 
@@ -60,7 +59,7 @@
    
       <% if applied_user.user_id != current_user.id.to_s %>
         <div style="border-bottom: 1px solid #D7D7D7;">
-          <%= image_tag applied_user.profile_picture.present? ? applied_user.profile_picture : 'default_profile_image.png', :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:40px; height:40px; float: left; " %>
+          <%= image_tag applied_user.profile_picture.present? ? applied_user.profile_picture : 'default_profile_image.png', :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:50px; height:50px; float: left; " %>
           <div style="display: inline-block; padding: 1px;">
             <h2 id="p-title-recommend" class="fn left padding_username"><%= link_to "#{applied_user.first_name} #{applied_user.last_name}".titleize, :controller => 'home', :action => 'show_profile', :id => applied_user.user_id %></h2>
 
@@ -75,8 +74,56 @@
     <% end %>
   </div>
 </div>  
-
 <br>
 <div class="clear"></div>
+
+<% if current_user.id == @job.user_id %>
+  <div style="border: 1px solid #D7D7D7;width: 594px;padding: 13px;">
+    <% @users.each do |applied_user|  %>
+      
+      <% if applied_user.user_id != current_user.id.to_s %>
+
+        <div style="border: 1px solid #D7D7D7;">
+          <%= image_tag applied_user.profile_picture.present? ? applied_user.profile_picture : 'default_profile_image.png', :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:40px; height:40px; float: left; " %>
+          <div style="display: inline-block; padding: 1px;">
+            <h2 id="p-title-recommend" class="fn left padding_username"><%= link_to "#{applied_user.first_name} #{applied_user.last_name}".titleize, :controller => 'home', :action => 'show_profile', :id => applied_user.user_id %></h2>
+
+            <span class="p-summary-tagline title" style="display: block; padding: 4px;">
+              <%= applied_user.iam if applied_user.present? %>
+            </span>
+          </div>
+          
+          <div style="float: right;margin-right: 10px;">
+            I need:
+            <%= applied_user.in_return if applied_user.present? %>
+          </div>
+          <div class="clear"></div>
+          <% unless is_accepted?(@job) %>
+            <div style="float: right;margin-top: -10px;margin-right: 20px;margin-bottom: 5px;">
+              <%= form_for :acceptancejobs, :url => {:controller => "jobs", :action => "accepted_proposal"} do |f|  %>
+                <%= hidden_field_tag :job_id, @job.id %>
+                <%= hidden_field_tag :user_id, applied_user.user_id %>
+                <div style="float:left;"  >
+                  <%= f.submit "Accept", :class => "btn btn-success", :locals => {:deal => "true"} %>
+                  <%= f.submit "Decline", :class => "btn btn-danger" %>
+                </div>
+              <% end %>
+            </div>
+            <div class="clear"></div>
+          <% else %>
+            <div style="float: right;margin-top: -20px;margin-bottom: 5px;">
+              <h5 style="color:green;">
+                Proposal is accepted.   
+              </h5> 
+            </div>  
+          <% end %>
+        </div>
+        <br />
+      <% end %>  
+    <% end %>
+    
+  </div>
+<% end %>
+
 <%#= link_to 'Edit', edit_job_path(@job) %> 
 <%#= link_to 'Back', jobs_path %>

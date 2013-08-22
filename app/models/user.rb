@@ -129,6 +129,33 @@ class User < ActiveRecord::Base
     user
   end
 
+  #For Twitter Authentication
+
+  def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
+    debugger
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless  user
+      user = User.new(email:auth.info.email,              
+                      provider:auth.provider.present? ? auth.provider : "",
+                      username:auth.extra.raw_info.name.present? ? auth.extra.raw_info.name : "",
+                      first_name:auth.extra.raw_info.first_name.present? ? auth.extra.raw_info.first_name : "",
+                      last_name:auth.extra.raw_info.last_name.present? ? auth.extra.raw_info.last_name : "",
+                      password:Devise.friendly_token[0,20],
+                      dob:auth.extra.raw_info.birthday.present? ? auth.extra.raw_info.birthday : "", 
+                      uid:auth.uid.present? ? auth.uid : "",
+                      profile_desc:auth.extra.raw_info.bio.present? ? auth.extra.raw_info.bio : "",
+                      facebook_url:auth.info.urls.present? ? auth.info.urls["Twitter"] : "" ,
+                      gender:auth.extra.raw_info.gender.present? ? auth.extra.raw_info.gender : "",
+                      hometown:auth.extra.raw_info.hometown.present? && auth.extra.raw_info.hometown.name.present? ? auth.extra.raw_info.hometown.name : "",
+                      location:auth.extra.raw_info.location.present? && auth.extra.raw_info.location.name.present? ? auth.extra.raw_info.location.name : "",
+                      relationship_status:auth.extra.raw_info.relationship_status.present? ? auth.extra.raw_info.relationship_status : "",
+                      profile_picture:auth.info.image.present? ? auth.info.image : ""
+                      )  
+
+    end
+    
+  end
+
   # For Linkedin Authentication with omniauth - Linkedin
   def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
