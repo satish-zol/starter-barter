@@ -1,7 +1,7 @@
 <div class="p-about-txt-jobProfile">
-		<% unless user.experiences.blank? %>
+		<% if user.experiences.present? %>
 			<% user.experiences.each do |experience| %>
-			<% unless experience.present? %>
+			<% if experience.present? %>
 			<div class="btn-exp">
 				<% if show_current_user?(@user || current_user)  %>
 					<div class="edit-experience">
