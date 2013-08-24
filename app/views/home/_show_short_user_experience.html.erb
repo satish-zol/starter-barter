@@ -45,10 +45,10 @@
 <script>
 $(document).ready(function(){
 
-  <% if current_user.experiences.present? %>
+  <% if user.experiences.present? %>
     $('.add-exp').html("+ Add Another Experience");
   <% else %>
     $('.add-exp').html("+ Add Experience");
   <% end %>
-})
+});
 </script>
