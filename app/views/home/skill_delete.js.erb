@@ -1,5 +1,5 @@
 <% if @skill %>
-	$("#show_user_skill").html('<%= escape_javascript(render :partial => 'home/show_short_user_skill', :locals => {:user => current_user} ).html_safe %>');
+	$("#show_user_skill").html('<%= escape_javascript(render :partial => "home/show_short_user_skill", :locals => {:user => current_user} ).html_safe %>');
 	//alert('Experience has been deleted successfully');
 	<% if current_user.skills.blank? %>
     	$('.add-skill').html("+ Add Skill");
