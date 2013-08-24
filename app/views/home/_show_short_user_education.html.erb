@@ -51,13 +51,4 @@
 			<% end %>
 		<% end %>
 </div>
-<script>
-$(document).ready(function(){
 
-  <% if current_user.educations.present? %>
-    $('.add-edu').html("+ Add Another Education");
-  <% else %>
-    $('.add-edu').html("+ Add Education");
-  <% end %>
-})
-</script>

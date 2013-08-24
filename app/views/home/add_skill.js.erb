@@ -2,6 +2,7 @@
 	$('#skill_name').val('');
 	$('#skill_proficiency').val('');
 	//$('#modal_add_user_skill').modal('hide');
-	$("#show_user_skill").html('<%= escape_javascript(render :partial => 'home/show_short_user_skill', :locals => {:user => current_user} ).html_safe %>');
+	$('.add-skill').html("+ Add Another Skill");
+	$("#show_user_skill").html('<%= escape_javascript(render :partial => "home/show_short_user_skill", :locals => {:user => current_user} ).html_safe %>');
 	alert('Skill has been created successfully');
 <% end %>
