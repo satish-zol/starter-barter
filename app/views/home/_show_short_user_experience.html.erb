@@ -1,7 +1,6 @@
 <div class="p-about-txt-jobProfile">
 		<% if user.experiences.present? %>
 			<% user.experiences.each do |experience| %>
-			<% if experience.present? %>
 			<div class="btn-exp">
 				<% if show_current_user?(@user || current_user)  %>
 					<div class="edit-experience">
@@ -14,14 +13,12 @@
 			</div>	
 			<div class="p-cred-title-2">
 				<div class="left">
-					<%= experience.company_name.titleize  %>
-										
-					
-					<%= experience.location.titleize %>
+					<%= experience.company_name.titleize if experience.company_name.present? %>					
+					<%= experience.location.titleize if experience.location.present?%>
 				</div>
 				<div class="clear"></div>
 				<div class="p-cred-subtitle">
-					<%= experience.title.titleize %>
+					<%= experience.title.titleize if experience.title.present?%>
 				</div>
 				<div class="p-cred-subtitle-3">
 					<% if experience.start_date.present? %>
@@ -38,7 +35,7 @@
 				<%= experience.description %>
 			</div>
 			<%= render :partial => 'edit_user_experience', :locals => {:experience => experience, :id => experience.id } %>	
-			<% end %>
+			
 			<% end %>
 
 		<% end %>
