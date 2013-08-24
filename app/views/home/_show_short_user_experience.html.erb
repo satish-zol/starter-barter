@@ -1,6 +1,7 @@
 <div class="p-about-txt-jobProfile">
-		<% if user.experiences.present? %>
+		<% unless user.experiences.blank? %>
 			<% user.experiences.each do |experience| %>
+			<% unless experience.present? %>
 			<div class="btn-exp">
 				<% if show_current_user?(@user || current_user)  %>
 					<div class="edit-experience">
@@ -38,6 +39,8 @@
 			</div>
 			<%= render :partial => 'edit_user_experience', :locals => {:experience => experience, :id => experience.id } %>	
 			<% end %>
+			<% end %>
+
 		<% end %>
 			<%#= link_to "Add Experience", :controller => "home", :action => "add_experience" %>
 			

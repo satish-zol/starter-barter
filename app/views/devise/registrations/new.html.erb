@@ -76,10 +76,14 @@
 				<div class="captcha">
 					<%= recaptcha_tags %>
 				</div>
+				<br />
 				<div class="btn_reg">
-					<%= f.submit "Sign up", :class=> "button" %>
+					<%= f.submit "Sign up", :class=> "button", :style=> "width:130px;" %>
 				</div>
+				<div class="clear"></div>
+				<br />
 				<% end %>
+				<br />
 				<%#= render "devise/shared/links" %>
 				<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
 				<div>
@@ -88,5 +92,8 @@
 				<% end %>
 			</div>
 		</div>
+		<div class="p-spacer"></div>
+		<div class="p-spacer"></div>
+		<div class="p-spacer"></div>
 	</section>
 </article>

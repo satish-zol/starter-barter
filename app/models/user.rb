@@ -16,10 +16,10 @@ class User < ActiveRecord::Base
   
   #callback methods
   after_create :create_user_profile
-  after_create :create_user_skills, :unless => :check_provider?
-  after_create :create_user_experiences, :unless => :check_provider?
-  after_create :create_user_educations, :unless => :check_provider?
-  after_create :create_user_groups, :unless => :check_provider?
+  after_create :create_user_skills, :if => :check_provider?
+  after_create :create_user_experiences, :if => :check_provider?
+  after_create :create_user_educations, :if => :check_provider?
+  after_create :create_user_groups, :if => :check_provider?
   # Associations
   has_one :profile
   has_many :skills

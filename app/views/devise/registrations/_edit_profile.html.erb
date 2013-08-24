@@ -22,17 +22,17 @@
         <%= f.text_field :username, :placeholder => "Type Your Username Here", :class => "input" %>
       </div>
       
-      <!-- <% unless current_user.provider.present? %>
-      <h4>Password</h4><span class="hint">(minimum 8 characters required)</span><br /><i>(leave blank if you don't want to change it)</i>
-      <div class="bg">
-        <%= f.password_field :password, :autocomplete => "off", :placeholder => "Type Your Password Here", :class => "input" %>
-      </div>
+      <% unless current_user.provider.present? %>
+        <h4>Password</h4><span class="hint">(minimum 8 characters required)</span><br /><i>(leave blank if you don't want to change it)</i>
+        <div class="bg">
+          <%= f.password_field :password, :autocomplete => "off", :placeholder => "Type Your Password Here", :class => "input" %>
+        </div>
 
-      <h4>Retype Password</h4><br />
-      <div class="bg"> 
-        <%= f.password_field :password_confirmation, :placeholder => "Retype your Password Here", :class => "input" %>
-      </div>
-	  <% end %> -->
+        <h4>Retype Password</h4><br />
+        <div class="bg"> 
+          <%= f.password_field :password_confirmation, :placeholder => "Retype your Password Here", :class => "input" %>
+        </div>
+	    <% end %>
 	  
     <h4>I am a</h4><span class="hint">(select multiple skills)</span>
       <%= f.select :iam, options_for_select(
