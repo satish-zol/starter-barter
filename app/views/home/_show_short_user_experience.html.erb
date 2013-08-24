@@ -42,13 +42,3 @@
 			<%#= link_to "Add Experience", :controller => "home", :action => "add_experience" %>
 			
 </div>
-<script>
-$(document).ready(function(){
-
-  <% if user.experiences.present? %>
-    $('.add-exp').html("+ Add Another Experience");
-  <% else %>
-    $('.add-exp').html("+ Add Experience");
-  <% end %>
-});
-</script>

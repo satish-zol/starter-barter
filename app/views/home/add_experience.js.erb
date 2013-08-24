@@ -7,7 +7,5 @@
 	// $('.in').hide();
     $('.add-exp').html("+ Add Another Experience");
 	$("#show_user_experience").html('<%= escape_javascript(render :partial => "home/show_short_user_experience", :locals => {:user => current_user} ).html_safe %>');
-	alert('Experience has been created successfully');
-<% else %>
-    $('.add-exp').html("+ Add Experience");
+	alert('Experience has been created successfully');    
 <% end %>
