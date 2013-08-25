@@ -51,7 +51,7 @@ class JobsController < ApplicationController
   def show
     
     @job = Job.find(params[:id])
-    @applied_job_count=Appliedjobs.find_all_by_job_id(params[:id]).count
+    @applied_job_count = Appliedjobs.find_all_by_job_id(params[:id]).count
     @users = User.applied_job_user(params[:id])
     respond_to do |format|
       format.html # show.html.erb
