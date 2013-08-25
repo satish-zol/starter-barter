@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def is_applied?(job)
     #debugger
-    applied_jobs = Appliedjobs.where("job_id=? and user_id=?", "#{job.id}", "#{current_user.id}")
+    applied_jobs = Appliedjobs.where("job_id=? and user_id=?", job.id, current_user.id)
     return true if applied_jobs.present?
 
   end
