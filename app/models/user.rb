@@ -246,7 +246,7 @@ class User < ActiveRecord::Base
   end
 
   def self.applied_job_user(user)
-    find_by_sql(["SELECT * FROM start_barter_development.users u left join appliedjobs a on a.user_id = u.id where a.job_id = #{user}"]) 
+    find_by_sql(["SELECT * FROM users u left join appliedjobs a on a.user_id = u.id where a.job_id = #{user}"]) 
   end
   
 private
