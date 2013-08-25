@@ -16,6 +16,7 @@
 	<h3 style="color: #508514;margin-left: 32px;margin-top: -25px;">Jobs</h3>
 	<% if @jobs.present? %>
 	    <% @jobs.each do |job| %>
+	    	<% if job.user_id != current_user.id %>
 	        <div id="job_list_home">
 	            <%= link_to "#{job.title}", job, :style => "color:cornflowerblue;" %>
 	            <% if job.user_id == current_user.id %>
@@ -49,6 +50,7 @@
 				<div class="clear"></div>
 	        </div>
 	        <div class="clear"></div>
+	    	<% end %>    
 	    <% end %>
 	    <div class="p-spacer"></div>
 	 <% else %>
