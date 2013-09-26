@@ -1,0 +1,37 @@
+<div style="width: 75%;min-height: 215px;">
+	<% if @show_received_messages.present? %>
+		<h3 style="margin-left: 80px;color: #508514;" class="muted">Inbox</h3>
+		
+		<% @show_received_messages.each do |show_result| %>
+
+			<div style=" border: 1px solid #D7D7D7;min-height: 65px;margin-left: 80px;">
+				<%= image_tag show_result.sender.profile_picture.present? ? show_result.sender.profile_picture : 'default_profile_image.png', :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:62px; height:62px; float: left; " %>
+
+				<div style="display: inline-block; padding: 5px;">
+					<h1 style="font-size: 18px;margin-left: 10px;margin-top: -10px;" class="fn left padding_username"><%= link_to "#{show_result.sender.first_name} #{show_result.sender.last_name}".titleize, :controller => 'home', :action => 'show_profile', :id => show_result.sender.id %></h1><br>
+					<% if show_result.reason == "Your proposal is accepted"  %>
+						<span style="color: green;display: block;float: right;margin-top: -15px;">Proposal Accepted</span>
+					<% else %>
+						<span style="color: #FF0000;display: block;float: right;margin-top: -15px;">Proposal Rejected</span>
+					<% end %>
+					<div class="clear"></div>
+					
+					<span style="display: block;margin-left: 10px">Job name: <%= link_to "#{show_result.job.title}", :controller => "jobs", :action => "show", :id => show_result.job_id %></span>
+					<span class="p-summary-tagline title comment more" style="display: block;"><%= link_to "#{show_result.reason}", {:controller => "messages", :action => "message_show", :id => show_result.id}%></span> 					
+					<div style="float: right;">
+						<%= link_to 'Delete', {:controller => "messages", :action => "delete_message", :id => show_result.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<br />
+
+			<div class="clear"></div>
+			
+		<% end %>
+		
+	<% else %>
+		<h3 style="align:center;margin-left: 80px" class="muted">You don't have any messages. </h3>
+	<% end %>
+</div>
+

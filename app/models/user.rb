@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   has_many :educations
   has_many :groups
   has_many :jobs
+  has_many :receivers, :class_name => 'Message', :foreign_key => 'receiver_id'
+  has_many :senders, :class_name => 'Message', :foreign_key => 'sender_id'
   belongs_to :country
   has_many :appliedjobs, :through => :jobs
   
@@ -246,9 +248,10 @@ class User < ActiveRecord::Base
   end
 
   def self.applied_job_user(job_id)
-    find_by_sql(["SELECT * FROM users u left join appliedjobs a on a.user_id = u.id where a.job_id = #{job_id}"]) 
+    find_by_sql(["SELECT * FROM users u left join appliedjobs a on a.user_id = u.id where a.job_id = #{job_id} and a.apply_status = true"]) 
   end
-  
+
+ 
 private
   
   def create_user_profile

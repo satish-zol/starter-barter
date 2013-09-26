@@ -9,3 +9,20 @@
 		</div>
 	</section>
 </article>
+<script>
+	<% if current_user.skills.present? %>
+		$('.add-skill').text("+Add another skill");
+	<% else %>
+		$('.add-skill').text("+Add skill");
+	<% end %>
+	<% if current_user.experiences.present? %>
+		$('.add-exp').text("+Add another experience");
+	<% else %>
+		$('.add-exp').text("+Add experience");
+	<% end %>
+	<% if current_user.educations.present? %>
+		$('.add-edu').text("+Add another education");
+	<% else %>
+		$('.add-edu').text("+Add education");
+	<% end %>
+</script>

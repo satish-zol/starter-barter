@@ -1,24 +1,12 @@
- <div class="eol-layout-s1" id="p-menu">
-	<div id="profimeImage">
-		<% if current_user.profile_picture.present? %>
-			<%= image_tag current_user.profile_picture , :alt => "Profile Picture", :title => "Change?", :style => "border: solid 1px #CCC; max-width:160px; height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" %>
-			<% else if current_user.facebook_image.present? %>
-				<%= image_tag current_user.facebook_image , :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:160px; height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" %>
-			<% else %>
-				<%= image_tag('default_profile_image.png', :alt => "Profile Picture", :title => "Change?", :style => "border: solid 1px #CCC; width:160px; height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" ) %>
-			<% end %>
-		<% end %>
-	</div>
-	<div class="clear"></div>
-	<div></div>
- </div>
-<div class="eol-layout-s4" id="p-content">
+ 
+<div >
 	<h3 style="color: #508514;margin-left: 32px;margin-top: -25px;">Jobs</h3>
-	<% if @jobs.present? %>
-	    <% @jobs.each do |job| %>
+	<% if jobs.present? %>
+
+	    <% jobs.each do |job| %>
 	    	<% if job.user_id != current_user.id %>
 	        <div id="job_list_home">
-	            <%= link_to "#{job.title}", job, :style => "color:cornflowerblue;" %>
+	            <%= link_to "#{job.title}", job, :style => "margin-left: 10px;color:cornflowerblue;" %>
 	            <% if job.user_id == current_user.id %>
 	              <div class="btn-group" style="float:right;">
 	              <!-- Link or button to toggle dropdown -->
@@ -33,18 +21,26 @@
 	              </div>
 	            <% end %>
 	            <br />
-	            <%= job.description.split('.')[0]%>
+	            <div class="comment more" style="text-align: justify;">
+	            	<%= job.description %>
+	            </div>
 	            <div class="p-spacer"></div>
 	            
 	            <% if job.user_id != current_user.id %>
-	        	    
-	        		<% if is_applied?(job) %>
-	        		<div style="float:right;color: green;">
-	        			<!-- <button class="btn btn-small btn-success" type="button">Apply</button> -->
-	        			<%= "Applied" %>
-	        		</div>
+	        	    <% if job.job_status == "Open" %>
+		        		<% if is_applied?(job) %>
+		        		<div style="float:right;color: green;">
+		        			<!-- <button class="btn btn-small btn-success" type="button">Apply</button> -->
+		        			<%= "Applied" %>
+		        		</div>
+		        		<% else %>
+		        			<%= link_to "Apply to this job", job, :style => "float: right;color: white;margin-top: -30px;", :class => "btn btn-success" %>
+		        		<% end %>
+	        		<% else %>
+	        			<div style="float: right;color: red;font-size:16px;font-weight:bold;">
+					        <%= "This job is closed." %>
+					    </div>
 	        		<% end %>
-	        		
 	        	<% end %>
 
 				<div class="clear"></div>
@@ -53,11 +49,11 @@
 	    	<% end %>    
 	    <% end %>
 	    <div class="p-spacer"></div>
-	 <% else %>
-	    <h3 style="margin-left: 73px;" class="muted">Currently you don't have any job. </h3>
+	    <%= will_paginate jobs, :style => "margin-left: 35px" %>
+	<% else %>
+	    <h3 style="margin-left: 73px;" class="muted">No jobs available.</h3>
 	 <% end %>
 	 <div class="p-spacer"></div>
 	 <div class="clear"></div>
  </div>
- <div class="p-spacer"></div>
- <div class="clear"></div>
+ 

@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# 
+	@jobs = Job.all
+	@jobs.each do |update_job|
+		update_job.update_attributes(:job_status => "Open")
+		puts "Job status updated"
+	end
+    

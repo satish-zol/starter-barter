@@ -17,6 +17,9 @@ module ApplicationHelper
   	@user == current_user  	
   end
 
+  def inbox_count(current_user)
+    @unread_messages = Message.where("receiver_id = ? AND read_at IS NULL", current_user.id).count
+  end
 
 end
 

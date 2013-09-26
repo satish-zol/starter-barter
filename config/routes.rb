@@ -2,6 +2,7 @@ StartBarter::Application.routes.draw do
   
   resources :jobs
   resources :appliedjobs
+  resources :messages
   match '/rate' => 'rater#create', :as => 'rate'
 
   match '/about_us', :to => "static_pages#about_us"
@@ -23,13 +24,21 @@ StartBarter::Application.routes.draw do
   match '/education_delete/:id' => "home#education_delete"
   match '/edit_skill/:id' => "home#edit_skill"
   match '/show_profile/:id' => "home#show_profile"
-  match 'search' => 'home#search', :via => [:get, :post], :as => :search
+  match 'search' => 'home#search', :as => :search
+  match 'job_search' => 'home#job_search', :via => [:get, :post], :as => :job_search
   match '/jobs/select_subcategory/:id' => 'jobs#select_subcategory'
   match '/home/user_profile' => 'home#user_profile'
   match '/applied_to_job' => 'appliedjobs#applied_to_job'
   match '/people_applied_for_job' => 'jobs#people_applied_for_job'
   match '/accepted_proposal' => 'jobs#accepted_proposal'
-
+  match '/applied_jobs_by_current_user' => 'jobs#applied_jobs_by_current_user'
+  match 'cancel_the_proposal' => 'jobs#cancel_the_proposal'
+  match 'message_received' => 'messages#message_received'
+  match 'job_status' => 'jobs#job_status'
+  match 'delete_message' => 'messages#delete_message'
+  match '/message_show' => 'messages#message_show'
+  match '/closed_jobs_for_current_user' => 'jobs#closed_jobs_for_current_user'
+  
   devise_for :users,
       :controllers => { 
       :sessions           => 'devise/sessions', 

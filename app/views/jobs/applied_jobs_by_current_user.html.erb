@@ -1,0 +1,46 @@
+ 
+<div style="min-height: 300px">
+	<h3 style="color: #508514;margin-left: 32px;margin-top: -25px;">Applied Jobs</h3>
+
+	<% if @applied_job.present? %>
+		
+	    <% @applied_job.each do |job| %>
+	    	<% if job.user_id == current_user.id %>
+	        <div id="job_list_home">
+	            <%= link_to "#{job.title}", job_path(job.job_id), :style => "margin-left: 10px;color:cornflowerblue;" %>
+	            
+	            <br />
+	            <div class="comment more" style="text-align: justify;">
+	            	<%= job.description %>
+	            </div>
+	            <div class="p-spacer"></div>
+	            <div style="float:right;">
+	        		<!-- <button class="btn btn-small btn-success" type="button">Apply</button> -->
+	        		
+	        		<%#= link_to "Cancel this Proposal", { :controller => "jobs", :action => "cancel_the_proposal"}, :style => "color: white;", :class => "btn btn-success", "data-toggle" => "modal", "data-target" => "#modal_cancel_the_proposal" %>
+	        		<a href="#modal_cancel_the_proposal" data-toggle="modal" class="btn btn-danger" style="color: white" data-id="<%= job.job_id %>" data-id2="<%= job.user_id %>" id="cancel_proposal"> Cancel this Proposal</a>
+	        		<%= render "cancel_the_proposal" %>
+	        		<%#= "Applied" %>
+	        	</div>
+	        		
+				<div class="clear"></div>
+	        </div>
+	        <div class="clear"></div>
+	    	<% end %>    
+	    <% end %>
+	    <div class="p-spacer"></div>
+	    <%#= will_paginate @applied_job, :style => "margin-left: 35px" %>
+	<% else %>
+	    <h3 style="margin-left: 73px;" class="muted">No jobs available.</h3>
+	 <% end %>
+	 <div class="p-spacer"></div>
+	 <div class="clear"></div>
+ </div>
+ <script>
+	 $(document).on("click", "#cancel_proposal", function () {
+	     var job_id = $(this).data('id');
+	     $(".modal-body #message_job_id").val( job_id );
+	     // var user_id = $(this).data('id2');
+	     // $(".modal-body #message_user_id").val( user_id );
+	});
+ </script>

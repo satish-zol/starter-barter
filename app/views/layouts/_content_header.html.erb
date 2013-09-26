@@ -1,5 +1,57 @@
 <div class="wrapper">
-	<nav>
+	<div class="wrapper2" style="margin-left: 10px;">
+		<a href="/" id="logo"></a>
+	</div>
+	<!-- <div class="navbar">
+	  <div class="navbar-inner">
+	    <div class="container">
+	 
+	      
+	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </a>
+	 
+	      
+	      <a class="brand" href="#">Project name</a>
+	 
+	      
+	      <div class="nav-collapse collapse">
+	      
+	      </div>
+	 
+	    </div>
+	  </div>
+	</div> -->
+	<div class="logged_in_user">
+		<% if user_signed_in? %>
+			
+			<div class="nav-collapse collapse" style="position: absolute;">
+				<ul class="nav nav-tabs login-box">
+					<li>
+						<%= link_to "Inbox(#{inbox_count(current_user)})", message_received_path %>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle login" data-toggle="dropdown" href="#">
+						 
+							<b><%= "#{current_user.first_name.titleize} "+"#{ current_user.last_name.titleize}" %></b>
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu login-container">
+							<li><%= link_to "Profile", :controller => "home", :action => "user_profile" %></li>
+							<li><%= link_to "Applied jobs", :controller => "jobs", :action => "applied_jobs_by_current_user" %></li>
+							<li><%= link_to "Closed jobs", :controller => "jobs", :action => "closed_jobs_for_current_user" %></li>				
+							<li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete', :id => "sign_out" %></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+
+	    <% end %>          
+	</div>
+
+	<!-- <nav>
 		<ul id="top_nav">
 			<li>
 				<a href="Support.html">Support</a>
@@ -11,68 +63,81 @@
 				<a href="#">Sitemap</a>
 			</li>
 		</ul>
-	</nav>
-	<span class="date"><%= DateTime.now.strftime('%m %d %Y')%></span>
+	</nav> -->
+	<!-- <span class="date"><%#= DateTime.now.strftime('%m %d %Y')%></span> -->
 </div>
-<div class="logged_in_user">
-	<% if user_signed_in? %>
-		<div class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: blue;"><%= "#{current_user.first_name.titleize} "+"#{ current_user.last_name.titleize}" %> <b class="caret"></b>
-	        </a>
-	        <ul class="dropdown-menu">
-	        	<li><%= link_to "Profile", :controller => "home", :action => "user_profile" %></li>
-	            <li class="divider"></li> 
-	            <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete', :id => "sign_out" %></li>
-	        </ul>
-        </div>
-    <% end %>          
-</div>
-<div class="wrapper2">
-	<a href="/" id="logo"></a>
-</div>
+
 
 <!-- search field -->
 
 <div id="search" >
-	<%= search_form_for @q, :url => search_path,
+	<%#= search_form_for @q, :url => search_path,
                         :html => {:method => :post} do |f| %>
 	  
-	  <%= f.text_field :name_cont, :class=>"input-medium search-query" %>
-	  <%= f.submit "Search", :class=>"btn" %>
-	<% end %>
+	  <%#= f.text_field :username_cont, :class=>"input-medium search-query" %>
+	  <%#= f.submit "Search", :class=>"btn" %>
+	<%# end %>
 </div>
 <div class="clear"></div>
 <!-- Post a job -->
-<% if user_signed_in? %>
-	<div id="job">
-		<%= link_to "Jobs", jobs_path, :style => "color: #508514;", :class => "btn" %>
-	</div>
-<% end %>
+
+
 	
 <div id="nav">
-	<ul class="level1">
-		<li class="level1-li first">
-			<a href="/" style="font-weight:bold;font-size:14px;color:white;">Home</a>
-		</li>
-		<li class="level1-li">
-			<%= link_to "About Us", about_us_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
-		</li>
-		<li class="level1-li">
-			<%= link_to "Services", services_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
-		</li>
-		<li class="level1-li">
-			<%= link_to "Contact Us", contact_us_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
-		</li>
-		<% if !user_signed_in? %>
+	<% if user_signed_in? %>
+		<ul class="level1">
+
+			<li class="level1-li first">
+				<a href="/" style="font-weight:bold;font-size:14px;color:white;">Home</a>
+			</li>
+
 			<li class="level1-li">
+				<%= link_to "Jobs", jobs_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+			</li>
+			<li class="level1-li">
+				<%= link_to 'Post a Job', new_job_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+			</li>
+		</ul>
+		<%= form_for :search, :url => search_path, :html => { :class => "form-search"}, :method => :get do |f| %>									
+	  			<%#= f.select :content_select, ["Jobs", "People", "Myjobs"] %>
+	  		<% if params[:search].present? %>
+				<select id="dropdown" name="search[content_select]" style="width: 83px;">
+					<option value="0" <%= "selected" if params[:search][:content_select] == "0" %>>Jobs</option>
+					<option value="1" <%= "selected" if params[:search][:content_select] == "1" %>>People</option>
+					<option value="2" <%= "selected" if params[:search][:content_select] == "2" %>>Myjobs</option>
+		  		</select>
+		  	<% else %>
+		  		<select id="dropdown" name="search[content_select]" style="width: 83px;">
+		  			<option value="0">Myjobs</option>
+		  			<option value="1">People</option>
+		  			<option value="2">Jobs</option>
+		  		</select>	
+		  	<% end %>
+	  			
+		  	<%= f.text_field :content, :style => "width: 190px"  %>
+		  	<%= f.submit "Search", :class=>"btn" %>
+		<% end %>
+			
+	<% else %>
+		<ul class="level1">
+			<li class="level1-li first">
 					<%= link_to 'Register', new_user_registration_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
 			</li>
-		<% end %>
-	</ul>
+			<li class="level1-li">
+				<%= link_to "About Us", about_us_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+			</li>
+			<li class="level1-li">
+				<%= link_to "Services", services_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+			</li>
+			<li class="level1-li">
+				<%= link_to "Contact Us", contact_us_path, :style => "font-weight:bold;font-size:14px;color:white;" %>
+			</li>
+		</ul>
+	<% end %>
 </div>
 <div class="clear"></div>
 <% if !current_user.present? %>
-<div class="wrapper">
+<!-- <div class="wrapper">
 	<p style="float:right;color:white;font-size:16px;margin-top:100px;margin-left:-180px;font-weight:bold;">
 		Achieve your dreams without money.Barter your
 		<br />
@@ -88,8 +153,17 @@
 		- Time Zone Preference
 	</p>
 	
-	<div id="gallery">
+	 <div id="gallery">
 		<a href="ourmission.html" class="button right" style="margin-top:80px;">Get Started Now</a>
-	</div>
-</div>
+	</div> 
+</div> -->
 <% end %> 
+
+<script>
+var mytextbox = document.getElementById('q_title_cont');
+var mydropdown = document.getElementById('dropdown');
+
+mydropdown.onchange = function(){
+     mytextbox.name = this.value;
+}
+</script>

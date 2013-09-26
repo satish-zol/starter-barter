@@ -7,7 +7,9 @@
       	<%#= f.input_field :subcategory_id, options_for_select(@subcategories.collect{ |s| [s.name,s.id]})  %>
       	<%= fo.select :subcategory_id, options_for_select(subcategories.collect{ |s| [s.name, s.id] }) %>
       <% else %>
-      	<%= fo.select :subcategory_id, options_for_select(@subcategory.collect{ |s| [s.name, s.id] }, :selected => @job.subcategory_id), :prompt => '' %>
+      
+      	<%= fo.select :subcategory_id, options_for_select(@subcategory.collect{ |s| [s.name, s.id] }, :selected => @job.subcategory_id), :prompt => '' if @subcategory.present? %>
+       
       <% end %>	
     </div>
   </div> 

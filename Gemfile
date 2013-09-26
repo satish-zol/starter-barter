@@ -38,8 +38,11 @@ group :test do
   gem 'capybara'
 end
 
+# gem used for pagination
+gem 'will_paginate'
+
 # gem used for search field
-gem "ransack" 
+#gem "ransack" 
 
 # gem used for recommendation
 gem "similus"

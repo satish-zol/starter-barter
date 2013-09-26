@@ -1,22 +1,22 @@
-<% if @user_profile %>
+<% if @user_profile.present? %>
 	$("#p-hd").html('<%= escape_javascript(render :partial => 'home/show_short_user_info', :locals => {:user => current_user} ).html_safe %>');
 	alert('Profile has been saved Successfully');
 	
 <% end %> 
-<% if @profile_overview %>
+<% if @profile_overview.present? %>
 	$("#p-bd").html('<%= escape_javascript(render :partial => 'home/show_short_user_overview', :locals => {:user => current_user} ).html_safe %>');
 	alert('Profile has been saved Successfully');
 	//$('.in').remove();
 <% end %>
-<% if @skill %>
+<% if @skill.present? %>
 	$("#show_user_skill").html('<%= escape_javascript(render :partial => 'home/show_short_user_skill', :locals => {:user => current_user} ).html_safe %>');
 	alert('Skills has been saved Successfully');
 <% end %>
-<% if @experience %>
+<% if @experience.present? %>
 	$("#show_user_experience").html('<%= escape_javascript(render :partial => 'home/show_short_user_experience', :locals => {:user => current_user} ).html_safe %>');
 	alert('Experience has been updated successfully');
 <% end %>
-<% if @education %>
+<% if @education.present? %>
 	$("#show_user_education").html('<%= escape_javascript(render :partial => 'home/show_short_user_education', :locals => {:user => current_user} ).html_safe %>');
 	alert('Educations has been updated successfully');
 <% end %>

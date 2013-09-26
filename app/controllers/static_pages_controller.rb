@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_filter :search_content
+  #before_filter :search_content
   def about_us
   end
 

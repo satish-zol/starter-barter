@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(:version => 20121209115622595) do
 
+  create_table "appliedjobs", :force => true do |t|
+    t.boolean  "apply_status"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.text     "in_return"
+    t.integer  "job_id"
+    t.integer  "user_id"
+  end
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -64,11 +73,23 @@ ActiveRecord::Schema.define(:version => 20121209115622595) do
   create_table "jobs", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.integer  "category_id"
     t.integer  "subcategory_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.text     "in_return"
+    t.string   "job_status"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "job_id"
+    t.text     "reason"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.datetime "read_at"
   end
 
   create_table "profiles", :force => true do |t|
@@ -169,18 +190,17 @@ ActiveRecord::Schema.define(:version => 20121209115622595) do
     t.text     "iam"
     t.text     "iamlookingfor"
     t.string   "profile_picture"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "country"
-    t.string   "city"
-    t.string   "state"
-    t.string   "address"
-    t.string   "state_code"
-    t.string   "postal_code"
-    t.string   "country_code"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "users_jobs", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "job_id"
+    t.boolean  "deal"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

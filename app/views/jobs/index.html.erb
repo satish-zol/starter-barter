@@ -1,32 +1,5 @@
-<div id="show_job" style="margin-left: 73px;">
-    <%= link_to 'My Jobs' %> | <%= link_to 'Post a Job', new_job_path %>
-</div>
 
-<h3 style="margin-left: 73px;color: #508514;">My Jobs</h3>
-<% if @job.present? %>
-    <% @job.each do |job| %>
-        <div id="job_list">
-            <%= link_to "#{job.title}", job, :style => "color:cornflowerblue;" %>
-            <div class="btn-group" style="float:right;">
-              <!-- Link or button to toggle dropdown -->
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to 'Edit Job', edit_job_path(job) %></li>
-                <li class="divider"></li>
-                <li><%= link_to 'Delete Job', job, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-              </ul>
-            </div><br />
-            <%= job.description.split('.')[0] %>
-        </div>
-        
-        <div class="clear"></div>
-    <% end %>
-    <div class="p-spacer"></div>
- <% else %>
-    <h3 style="margin-left: 73px;" class="muted">Currently you haven't posted any job. </h3>
- <% end %>
+<%= render :partial => 'home/jobs', :locals => {:user => current_user, :jobs => @jobs }%>
 
 <!-- <h1>Listing jobs</h1>
 

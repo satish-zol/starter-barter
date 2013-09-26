@@ -1,37 +1,36 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
-  before_filter :search_content
+  #before_filter :search_content
   #load_and_authorize_resource
   def index
-    #@user = current_user
     
     @users = User.all
     @skills = Skill.all
     @experiences = Experience.all
     @educations = Education.all
-    @jobs = Job.all
+    @job = Job.where('user_id = ?', current_user.id).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) if current_user.present?
     user = current_user
-    @q = Skill.search(params[:q])
-    @search_results = @q.result(:distinct => true)
-    show_recomm(user)
-    #debugger  
-    #@user = User.find(params[:id])
-    
-  
-    #@users_recomm = User.where("iam = ?", "#{user.iamlookingfor}")
+     
+    #if params[:content_select] == "0"
+      
+    # @q = Job.search(params[:q])
+    # @search_results = @q.result(:distinct => true).order("created_at DESC")
+    #end
    
-    #@users_recomm = Similus.similar_to(@user)
-    
+    show_recomm(user)
+   
   end
 
   def user_profile
     @users = User.all
-    @skills = Skill.all
-    @experiences = Experience.all
-    @educations = Education.all
+    # @skills = Skill.all
+    # @experiences = Experience.all
+    # @educations = Education.all
     user = current_user
-    @q = Skill.search(params[:q])
-    @search_results = @q.result(:distinct => true)
+    # @q = User.search(params[:q])
+    # @search_results = @q.result(:distinct => true)
+    # @j = Job.search(params[:j], :search_key => :j)
+    # @job_search = @j.result(:distinct => true)
     show_recomm(user)
     respond_to do |format|
       format.html
@@ -39,11 +38,40 @@ class HomeController < ApplicationController
   end 
 
   def search
-    index
-    @result_arr = []
+    #debugger
+    if params[:search][:content_select] == "0"
+      @job_search = Job.where(['title LIKE ? AND user_id != ?', "%#{params[:search][:content]}%", current_user.id]).paginate(:page => params[:page], :per_page => 10)
+    end
 
-    @search_results.each do |skill|
-       @result_arr << skill.user
+    if params[:search][:content_select] == "1"
+      # @q = User.search(params[:q])
+      @user_search = User.where(['username LIKE ?', "%#{params[:search][:content]}%"]).paginate(:page => params[:page], :per_page => 10)
+      # @search_results = @q.result(:distinct => true).order("created_at DESC")
+    end  
+    if params[:search][:content_select] == "2"
+      @my_job = Job.where('user_id = ?', current_user.id).paginate(:page => params[:page], :per_page => 10)
+      # @q = @job.search(params[:q])
+      # @search_results = @q.result(:distinct => true).order("created_at DESC")
+    end
+    
+    # @result_arr = []
+
+    # @search_results.each do |user|
+    #    @result_arr << user
+    # end
+    
+    respond_to do |format|
+      format.html
+    end 
+  end
+
+  def job_search
+    
+    index
+    @job_result_arr = []
+
+    @job_search.each do |job|
+       @job_result_arr << job
     end
     
     respond_to do |format|

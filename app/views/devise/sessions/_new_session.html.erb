@@ -1,11 +1,12 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:id => 'newsletter'}) do |f| %>
-<h3>Log In With Social Network</h3>
+<h3>Log In With 
 <a href="javascript:void(0);"><%= image_tag('FB-icon-20x20.png',:alt => "Facebook", id: "sign_in") %></a>
 <!-- <a href="/auth/facebook" id="sign_in"><%= image_tag('FB-icon-20x20.png') %></a> -->
 </li>
 
 <%= link_to(image_tag('linkedin-icon-20x20.png',:alt => "Linkedin", id: "sign_in_linkedin"), user_omniauth_authorize_path(:linkedin)) %></li>
-<%= link_to(image_tag('twitter-icon-20x20.png',:alt => "Twitter", id: "sign_in"), user_omniauth_authorize_path(:twitter)) %></li> Or Login with email 
+<%= link_to(image_tag('twitter-icon-20x20.png',:alt => "Twitter", id: "sign_in"), user_omniauth_authorize_path(:twitter)) %></li> 
+</h3> 
 <h3>Email</h3>
 <div class="bg">
 	<%= f.text_field :login, :placeholder => "Type your email or username here", :class => 'input' %>
@@ -17,11 +18,12 @@
 	</div>
 	<% if devise_mapping.rememberable? -%>
 	<div>
-		<%= f.check_box :remember_me %> <%= f.label :remember_me %>
+		<%= f.check_box :remember_me %> <%= f.label :remember_me, :style => "margin-left: 26px; margin-top: -19px;" %>
 	</div>
 	<% end -%>
+	<div class="clear: both;"></div>
 
-	<%= f.submit "Sign in", :class => "button", :style=> "width:130px;" %>
+	<%= f.submit "Sign in", :class => "button", :style=> "width:130px;margin-left: -5px;margin-top: 18px;" %>
 </div>
 <% end %>
 <div style="margin-left:150px;margin-top:-30px;">
