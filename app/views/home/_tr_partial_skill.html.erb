@@ -1,0 +1,30 @@
+
+	<td class="binrowheader providerProfileSkillItemRow tdwordwrap" style="padding-top: 13px; font-weight: normal; padding-left: 17px;">
+		<%= skill.name %> 
+	</td>
+	<td class="providerProfileSkillItemRow" style="overflow: visible; padding-top: 13px;">
+		<div style="position: relative; text-align: left; padding-top: 3px;">
+			<div class="testedChart">
+				<% skill.proficiency.to_i.times do |i| %>
+					<div class="left selfChartColor"></div>
+				<% end %>
+				<% (10 - skill.proficiency.to_i).times do |i| %>
+					<div class="left unselectedChartColor"></div>
+				<% end %>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</td>
+	<td>
+		<!-- _<%#= skill.id %> -->
+					<!-- <a href="javascript:void(0)" class="edit-btn edit-skill" style="position: relative; margin-top:0px;" remote= "true" >Edit</a> -->
+		<% if show_current_user?(@user || current_user)  %>			
+			<%= link_to "Edit", {:controller => "home", :action => "edit_skill", :id => skill.id}, :remote => "true" %>
+		<% end %>
+	</td>	
+	<td>
+		<% if show_current_user?(@user || current_user)  %>
+			<%= link_to "Remove", {:controller => "home", :action => "skill_delete", :id => skill.id }, :method => "delete", data: { confirm: 'Are you sure?' }, :remote => "true" %>	
+		<% end %>	
+		<%#= render :partial => 'edit_user_skill', :locals => {:skill => skill, :id => skill.id } %>	
+	</td>

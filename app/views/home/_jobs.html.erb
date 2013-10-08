@@ -1,0 +1,59 @@
+ 
+<div >
+	<h3 style="color: #508514;margin-left: 32px;margin-top: -25px;">Jobs</h3>
+	<% if jobs.present? %>
+
+	    <% jobs.each do |job| %>
+	    	<% if job.user_id != current_user.id %>
+	        <div id="job_list_home">
+	            <%= link_to "#{job.title}", job, :style => "margin-left: 10px;color:cornflowerblue;" %>
+	            <% if job.user_id == current_user.id %>
+	              <div class="btn-group" style="float:right;">
+	              <!-- Link or button to toggle dropdown -->
+	              	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	                	<span class="caret"></span>
+	              	</a>
+	              	<ul class="dropdown-menu">
+	                	<li><%= link_to 'Edit Job', edit_job_path(job) %></li>
+	                	<li class="divider"></li>
+	                	<li><%= link_to 'Delete Job', job, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+	              	</ul>
+	              </div>
+	            <% end %>
+	            <br />
+	            <div class="comment more" style="text-align: justify;">
+	            	<%= job.description %>
+	            </div>
+	            <div class="p-spacer"></div>
+	            
+	            <% if job.user_id != current_user.id %>
+	        	    <% if job.job_status == "Open" %>
+		        		<% if is_applied?(job) %>
+		        		<div style="float:right;color: green;">
+		        			<!-- <button class="btn btn-small btn-success" type="button">Apply</button> -->
+		        			<%= "Applied" %>
+		        		</div>
+		        		<% else %>
+		        			<%= link_to "Apply to this job", job, :style => "float: right;color: white;margin-top: -30px;", :class => "btn btn-success" %>
+		        		<% end %>
+	        		<% else %>
+	        			<div style="float: right;color: red;font-size:16px;font-weight:bold;">
+					        <%= "This job is closed." %>
+					    </div>
+	        		<% end %>
+	        	<% end %>
+
+				<div class="clear"></div>
+	        </div>
+	        <div class="clear"></div>
+	    	<% end %>    
+	    <% end %>
+	    <div class="p-spacer"></div>
+	    <%= will_paginate jobs, :style => "margin-left: 35px" %>
+	<% else %>
+	    <h3 style="margin-left: 73px;" class="muted">No jobs available.</h3>
+	 <% end %>
+	 <div class="p-spacer"></div>
+	 <div class="clear"></div>
+ </div>
+ 

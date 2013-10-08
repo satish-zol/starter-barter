@@ -1,0 +1,13 @@
+<% if @education.present? %>
+	$('#education_school_name').val('');
+	$('#education_field_of_study').val('');
+	$('#education_degree').val('');
+	$('#education_grade').val('');
+	$('#education_activities').val('');
+	$('#education_notes').val('');
+	$('#modal_add_user_education').modal('hide');
+	// $('.in').hide();
+	$('.add-edu').html("+ Add Another Education");
+	$("#show_user_education").html('<%= escape_javascript(render :partial => "home/show_short_user_education", :locals => {:user => current_user} ).html_safe %>');
+	alert('Education has been created successfully');
+<% end %>

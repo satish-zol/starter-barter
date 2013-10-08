@@ -1,0 +1,7 @@
+<% if @experience.present? %>
+	$("#show_user_experience").html('<%= escape_javascript(render :partial => "home/show_short_user_experience", :locals => {:user => current_user} ).html_safe %>');
+	//alert('Experience has been deleted successfully');
+	<% if current_user.experiences.blank? %>
+		$('.add-exp').html("+ Add Experience");
+	<% end %>
+<% end %>

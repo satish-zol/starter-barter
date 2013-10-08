@@ -1,0 +1,19 @@
+<%#= form_for "job" do |f| %>
+<%= fields_for :job do |fo| %>
+  <div class="control-group">
+    <%= fo.label :subcategory_id, :class =>"control-label" %>
+    <div class="controls">
+      <% unless subcategories.blank? %>	
+      	<%#= f.input_field :subcategory_id, options_for_select(@subcategories.collect{ |s| [s.name,s.id]})  %>
+      	<%= fo.select :subcategory_id, options_for_select(subcategories.collect{ |s| [s.name, s.id] }) %>
+      <% else %>
+      
+      	<%= fo.select :subcategory_id, options_for_select(@subcategory.collect{ |s| [s.name, s.id] }, :selected => @job.subcategory_id), :prompt => '' if @subcategory.present? %>
+       
+      <% end %>	
+    </div>
+  </div> 
+<% end %>
+
+
+ 

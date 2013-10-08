@@ -1,0 +1,17 @@
+<% unless user_search.blank? %>
+	<% user_search.uniq.each do |user|  %>
+		<div style=" border: 1px solid #D7D7D7;min-height: 65px;margin-left: 80px;">
+			<%= image_tag user.profile_picture.present? ? user.profile_picture : 'default_profile_image.png', :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:62px; height:62px; float: left; " %>
+			<div style="display: inline-block; padding: 5px;">
+				<h1 id="p-title" class="fn left padding_username"><%= link_to "#{user.first_name} #{user.last_name}".titleize, :action => 'show_profile', :id => user.id %></h1>
+				<span class="p-summary-tagline title" style="display: block;"><%= user.profile.tagline if user.profile.present? %></span>
+			</div>
+		</div>
+		<br />
+
+		<div class="clear"></div>
+	<% end %>
+	<%= will_paginate user_search, :style => "margin-left: 35px" %>
+<% else %>
+	<h3 style="align:center" class="muted">No results found. </h3>
+<% end %>

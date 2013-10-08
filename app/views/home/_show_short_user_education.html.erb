@@ -1,0 +1,54 @@
+<div class="p-about-txt-jobProfile">
+		<% if user.educations.present? %>
+			<% user.educations.each do |education| %>
+				<% if show_current_user?(@user || current_user)  %>
+					<div class="btn-exp">
+						<div class="edit-experience">
+							<a href="#modal_user_edit_education_<%= education.id %>" class="edit-btn" data-toggle="modal" style="position: relative; margin-top:0px;" >Edit </a>
+						</div>
+						<div class="rm-experience" > 
+							<%= link_to "Remove", {:controller => "home", :action => "education_delete", :id => education.id }, :method => "delete", data: { confirm: 'Are you sure?' }, :remote => "true" %>
+						</div>
+					</div>	
+				<% end %>	
+				<div class="p-cred-title-2">
+					<div class="left">
+						<%= education.school_name %>  
+						<%#= link_to "Edit", "#", :class => "edit-btn", :id => "edit_education_#{education.id}", :title => "Edit Experience", :style => "position: relative; z-index: 1;margin-top:12px; top: -28px; left: 14px;", :remote => true %>
+						
+						
+						<%= render :partial => 'edit_user_education', :locals => {:education => education, :id => education.id } %>
+					</div>
+					<div class="clear"></div>
+					<div class="p-cred-subtitle">
+						<% if education.degree.present? %>
+							<%= education.degree %>,
+						<% end %>
+						<%= education.field_of_study %>
+					</div>
+					<div class="p-cred-subtitle-3">
+						<% if education.start_date.present? %>
+							From <%= education.start_date %> 
+						<% end %>
+						<% if education.end_date.present? %>
+							to <%= education.end_date %>
+						<% end %>
+					</div>
+				</div>
+				<div class="p-cred-verif-editMode"></div>
+				<div class="clear"></div>
+				<% if education.activities.present? %>
+					<div class="p-cred-desc">
+						Activities: <%= education.activities %>
+					</div>
+				<% end %>
+				<div class="clear"></div>
+				<% if education.notes.present? %>
+				<div class="p-cred-desc">
+					Notes: <%= education.notes %>
+				</div>
+				<% end %>
+			<% end %>
+		<% end %>
+</div>
+

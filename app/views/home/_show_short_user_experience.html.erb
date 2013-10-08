@@ -1,0 +1,44 @@
+<div class="p-about-txt-jobProfile">
+		<% if user.experiences.present? %>
+			<% user.experiences.each do |experience| %>
+			<div class="btn-exp">
+				<% if show_current_user?(@user || current_user)  %>
+					<div class="edit-experience">
+						<a href="#modal_user_edit_experience_<%= experience.id %>" class="edit-btn" data-toggle="modal" style="position: relative; margin-top:0px;" >Edit </a>
+					</div>
+					<div class="rm-experience" > 
+						<%= link_to "Remove", {:controller => "home", :action => "experience_delete", :id => experience.id }, :method => "delete", data: { confirm: 'Are you sure?' }, :remote => "true" %>
+					</div>
+				<% end %>
+			</div>	
+			<div class="p-cred-title-2">
+				<div class="left">
+					<%= experience.company_name.titleize if experience.company_name.present? %>					
+					<%= experience.location.titleize if experience.location.present?%>
+				</div>
+				<div class="clear"></div>
+				<div class="p-cred-subtitle">
+					<%= experience.title.titleize if experience.title.present?%>
+				</div>
+				<div class="p-cred-subtitle-3">
+					<% if experience.start_date.present? %>
+						From <%= experience.start_date %> 
+					<% end %>
+					<% if experience.end_date.present? %>
+						to <%= experience.end_date %>
+					<% end %>
+				</div>
+			</div>
+			<div class="p-cred-verif-editMode"></div>
+			<div class="clear"></div>
+			<div class="p-cred-desc">
+				<%= experience.description %>
+			</div>
+			<%= render :partial => 'edit_user_experience', :locals => {:experience => experience, :id => experience.id } %>	
+			
+			<% end %>
+
+		<% end %>
+			<%#= link_to "Add Experience", :controller => "home", :action => "add_experience" %>
+			
+</div>

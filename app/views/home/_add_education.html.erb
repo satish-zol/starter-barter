@@ -1,0 +1,52 @@
+<div id="modal_add_user_education" class="modal hide fade" aria-hidden="true">
+    <%= form_for(:education , :url => add_education_path, :html => {:class => "form-horizontal", :remote => true}) do |f| %>
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>Add Education</h3>
+      </div>	
+      <div class="modal-body">
+        <%#= hidden_field_tag :id, id %>	
+        <div class="control-group">
+          <%= f.label :school_name, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :school_name %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :field_of_study, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :field_of_study %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :degree, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :degree %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :grade, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_field :grade %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :activities, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_area :activities %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :notes, :class =>"control-label" %>
+          <div class="controls">
+            <%= f.text_area :notes %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#"><%= f.submit "Save", :class=>"btn btn-primary" %></a>
+      </div>  
+    <% end %>
+  </div>  	

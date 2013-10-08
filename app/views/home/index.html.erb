@@ -1,0 +1,65 @@
+
+<!-- content -->
+<article id="content">
+	<section>
+		<div class="wrapper pad_bot2">
+			<section class="col2">
+				<%= render :partial => 'home/content' %>
+			</section>
+			<figure class="left marg_right1">
+				<% if !user_signed_in? %>
+				<%= render :partial => 'devise/sessions/new_session' %>
+				<% else %>
+				<%#= render :partial => 'devise/registrations/edit_profile', :locals => {:user => @user } %>
+				<%#= render :partial => 'profile', :locals => {:user => current_user }%>
+					<div class="eol-layout-s1" id="p-menu">
+						<div id="profimeImage">
+							<% if current_user.profile_picture.present? %>
+								<%= image_tag current_user.profile_picture , :alt => "Profile Picture", :title => "Change?", :style => "border: solid 1px #CCC; max-width:160px; height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" %>
+								<% else if current_user.facebook_image.present? %>
+									<%= image_tag current_user.facebook_image , :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:160px; height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" %>
+								<% else %>
+									<%= image_tag('default_profile_image.png', :alt => "Profile Picture", :title => "Change?", :style => "border: solid 1px #CCC; width:160px; height:160px; height:expression(this.height &gt; 159 ? 160: true); width:expression(this.width &gt; 159 ? 160: true);" ) %>
+								<% end %>
+							<% end %>
+						</div>
+						<div class="clear"></div>
+						<div></div>
+	 				</div>
+					<div class="eol-layout-s4" id="p-content">
+					<h3 style="margin-left: 36px;color: #508514;">My Jobs</h3>
+					<% if @job.present? %>
+
+					    <% @job.each do |job| %>
+					        <div id="job_list_home">
+					            <%= link_to "#{job.title}", job, :style => "margin-left: 10px;color:cornflowerblue;" %>
+					            <div class="btn-group" style="float:right;">
+					              <!-- Link or button to toggle dropdown -->
+					              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					                <span class="caret"></span>
+					              </a>
+					              <ul class="dropdown-menu">
+					                <li><%= link_to 'Edit Job', edit_job_path(job) %></li>
+					                <li class="divider"></li>
+					                <li><%= link_to 'Delete Job', job, :method => "delete", data: { confirm: 'Are you sure?' } %></li>
+					              </ul>
+					            </div><br />
+					            <div class="comment more">
+					              <%= job.description %>
+					            </div>
+					        </div>
+					        
+					        <div class="clear"></div>
+					    <% end %>
+					    <%= will_paginate @job, :style => "margin-left: 35px" %>
+					    <div class="p-spacer"></div>
+					<% else %>
+						<h3 style="margin-left: 73px;" class="muted">You haven't posted any job. </h3>
+					<% end %>
+					</div>
+				<% end %>
+			</figure>
+		</div>
+	</section>
+</article>
+<!-- / content -->

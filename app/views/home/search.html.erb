@@ -1,0 +1,15 @@
+<div id="searchresults" style="width: 480px;">
+	<% if params[:search][:content_select] == "0" %>
+		<%= render :partial => "home/jobs", :locals => {:jobs => @job_search} %>
+	<% end %>
+
+	<% if params[:search][:content_select] == "1" %>
+		<%= render :partial => "home/user_search", :locals => {:user_search => @user_search} %>
+		
+	<% end %>
+
+	<% if params[:search][:content_select] == "2" %>
+		<%= render :partial => "home/my_job_search", :locals => {:jobs => @my_job} %>
+	<% end %>
+	
+</div>

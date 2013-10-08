@@ -1,0 +1,22 @@
+
+<td>
+  <div class="edit-partial">
+    <%= form_for(:skill, :url => update_user_info_path, :html => {:class => 'edit-skill-form', :remote => true }) do |f| %>
+  
+      <div><%= hidden_field_tag :skill_id, @id %> </div>
+      <div class="clear"></div>
+      <div id="div-name"><%= f.text_field :name %></div>
+      <div class="clear"></div>
+  
+      <div id="div-prof"><%= f.select :proficiency, options_for_select((0..10).step(1).to_a.map{|s| ["#{s}", s]}, :selected => @proficiency) %></div>
+      <div class="clear"></div>
+      <div id="div-sub"><%= f.submit "Save", :class=>"btn btn-primary save" %></div>
+      <div class="clear"></div>
+      <div id="div-can"><a href="javascript:void(0);" class="btn cancel-btn1">Cancel</a></div>
+      <div class="clear"></div>
+  
+    <% end %>
+  </div>
+  <div class="clear"></div>
+</td>
+<td></td>

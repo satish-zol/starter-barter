@@ -1,0 +1,41 @@
+<%= form_for(experience , :url => update_user_info_path, :html => {:class => "form-horizontal", :remote => true}) do |f| %>
+	
+	<div id="modal_user_edit_experience_<%= experience.id %>" class="modal hide fade" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3>Update Experience</h3>
+    </div>	
+    <div class="modal-body">
+      <%= hidden_field_tag :id, id %>	
+      <div class="control-group">
+        <%= f.label :company_name, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_field :company_name %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :title, "Position", :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :location, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_field :location %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :description, :class =>"control-label" %>
+        <div class="controls">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+      <a href="#"><%= f.submit "Update", :class=>"btn btn-primary" %></a>
+    </div>  
+  </div>  	
+<% end %>
+<%#= link_to "Back", edit_user_info_path, :class => "back", :id => "back_to_previous", :remote => true %>

@@ -1,0 +1,82 @@
+<div id="show_user_skill">
+
+<table class="profileTable">
+	<thead>
+		<tr>
+			<th id="firstcol" style="width: 215px; padding-left: 17px;">Skill</th>
+			<th id="lastcol" colspan="3">Proficiency</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if user.skills.present? %> 
+			<% user.skills.order(:name).each do |skill| %>
+			
+				<tr id="skill_edit_<%= skill.id %>">
+					<%= render :partial => "tr_partial_skill", :locals => {:user => user, :skill => skill} %>
+				</tr> 
+			
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+</div>
+
+<script>
+$(document).ready(function(){
+
+  
+    // Creation of add skill form 
+
+	var counter = 1;
+	var limit = 2;
+		
+	$('.add-skill').live('click', function(){
+
+		$('.add-skill-form').remove();
+		//$(".add-skill-form").first().remove();
+
+		if (!(counter == limit)){
+			
+			$('.profileTable').after('<%= form_for(:skill, :url => add_skill_path, :html => {:class => "edit-btn add-skill-form", :remote => true}) do |f| %><table id="skill_table"><%= escape_javascript(render :partial =>"add_skill", :locals => {:f => f}).html_safe %></table><% end %> ');
+			$('.add-skill-form').reset();
+
+			counter++;
+		}
+		
+		
+	})
+
+	$('.cancel-btn').live('click', function(){
+		//$('#skill_table').remove();
+		//$('.add-skill-form').remove();
+		$(".add-skill-form").first().remove();
+		return counter -= 1;	
+    })
+
+    
+	
+	
+	
+
+ 	
+	// Creation of edit skill form  
+	// $('.edit-skill').live('click', function(){
+
+	// 	//$('.edit-skill-form').remove();
+	// 	//$(".add-skill-form").first().remove();
+
+	// 	//if (!(counter == limit)){
+			
+	// 		$('.profileTable').after('<%= form_for(:skill, :url => update_user_info_path, :html => {:class => "edit-btn edit-skill-form", :remote => true }) do |f| %><table id="skill_table_<%#= skill.id %>"><%= escape_javascript(render :partial =>"edit_user_skill", :locals => {:f => f}).html_safe %></table><% end %> ');
+	// 		$('.edit-skill-form').reset();
+
+	// 	//	counter++;
+	// 	}
+	// })
+
+
+ 
+})
+
+
+</script>

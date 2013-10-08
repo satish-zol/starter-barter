@@ -1,0 +1,48 @@
+<% if @show_message.present? %>
+
+<div style="margin-left: 70px;width: 600px;border: 1px solid #D7D7D7;padding: 20px;"> 
+   <br>
+
+    <p style="text-align: justify;">
+      <b>From: </b>
+      	<div class="clear"></div>
+      	
+      	<div style="padding: 5px;background-color: #E2E2E2;height: 23px;">
+      		<%#= image_tag @show_message.sender.profile_picture.present? ? @show_message.sender.profile_picture : 'default_profile_image.png', :alt => "Profile Picture", :style => "border: solid 1px #CCC; width:62px; height:62px; float: left; " %>
+			<h1 style="font-size: 18px;margin-left: 10px;margin-top: -10px;" class="fn left padding_username"><%= link_to "#{@show_message.sender.first_name} #{@show_message.sender.last_name}".titleize, :controller => 'home', :action => 'show_profile', :id => @show_message.sender.id %></h1><br>
+			<% if @show_message.reason == "Your proposal is accepted"  %>
+				<span style="color: green;display: block;float: right;margin-top: -15px;">Proposal Accepted</span>
+			<% else %>
+				<span style="color: #FF0000;display: block;float: right;margin-top: -15px;">Proposal Rejected</span>
+			<% end %>
+			<div class="clear"></div>
+		</div>	
+		<!-- <div class="clear"></div> -->
+    </p>
+
+    <p>
+    	<b>Job name: </b>
+    	<br>
+    	<span style="display: block;"><%= link_to "#{@show_message.job.title}", :controller => "jobs", :action => "show", :id => @show_message.job_id %></span>
+    </p>
+
+    <p>
+      <b>Message: </b>
+      <span class="p-summary-tagline title " style="display: block;background-color: #E2E2E2;"><%= @show_message.reason %></span> 					
+    </p>
+
+    <p>
+
+    	<div style="float: right;">
+			<%= link_to 'Delete', {:controller => "messages", :action => "delete_message", :id => @show_message.id}, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+			<%= link_to 'Back', message_received_path  %>
+		</div>
+		<div class="clear"></div>
+    </p>
+    
+    <br>
+    
+    <%#= link_to 'Back', jobs_path %>
+</div>
+<% end %>
+<br>

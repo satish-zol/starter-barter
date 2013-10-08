@@ -1,0 +1,9 @@
+
+<% if @skill.present? %>
+	//$("#skill_edit_<%= @skill.id %>").html("Heloo");
+	$("#skill_edit_<%= @skill.id %>").html("<table id='skill_edit_<%= @skill.id %>'><%= escape_javascript(render :partial => 'edit_user_skill', :locals => {:skill => @skill}) %></table>");
+<% end %>
+
+$('.cancel-btn1').live('click', function(){
+	$("#skill_edit_<%= @skill.id %>").html("<%= escape_javascript(render :partial => 'tr_partial_skill', :locals => {:skill => @skill, :user => current_user})%>");
+})

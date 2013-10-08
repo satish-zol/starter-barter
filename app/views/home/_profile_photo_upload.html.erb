@@ -1,0 +1,35 @@
+<% if show_current_user?(@user || current_user)  %>
+<a type="button" class="btn btn-primary" style="width:76%" href="#test_modal" data-toggle="modal">Upload Image</a>
+<% end %>
+  <div class="clear"></div>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :id => "newsletter1", :method => :put }) do |f| %>
+      <%= devise_error_messages! %>
+	  <div class="modal fade" id="test_modal" aria-hidden="true" style="display: none;">
+	    <div class="modal-header">
+          <a class="close" data-dismiss="modal">&times;</a>
+          <h3>Upload image</h3>
+        </div>
+        <div class="modal-body">
+      	  <div class="fileupload fileupload-new" data-provides="fileupload">
+		    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+		  	  <img src="<%= current_user.profile_picture.present? ? current_user.profile_picture  : "{http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image}" %>" />
+		    </div>
+		    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+		    </div>
+		    <div>
+		      <span class="btn btn-file">
+		        <span class="fileupload-new">Select image</span>
+		    	<span class="fileupload-exists">Change</span>
+		    	<%= f.file_field :profile_picture %>
+		      </span>
+		      <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">	Remove
+		      </a>
+		    </div>
+		  </div>      
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn" data-dismiss="modal">Close</a>
+          <a href="#"><%= f.submit "Upload", :class=> "btn btn-primary" %></a>
+        </div>
+      </div>
+<% end %>

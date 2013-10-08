@@ -1,0 +1,77 @@
+<%= form_for(@job) do |f| %>
+  <div style=" margin-left: -4px;" class="new_job">
+      <% if @job.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+          <ul>
+          <% @job.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <div class="field">
+        <%#= f.label :user_id %><%#= f.number_field :user_id %>
+        <%= f.hidden_field :user_id, :value => current_user.id.to_s %>
+      </div>
+      <div class="control-group" >
+        <%= f.label :title, :class =>"control-label" %><br/>
+        <div id="job_title">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      <br/>
+      <div class="control-group">
+        <%= f.label :description, :class =>"control-label" %><br/>
+        <div id="job_description">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      <br/>
+      <div class="control-group">
+        <%= f.label :in_return, "In return i will provide", :class =>"control-label" %><br/>
+        <div id="job_title">
+          <%= f.text_field :in_return, :id => "job_title"%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :category_id, "Category", :class =>"control-label" %>
+        <div>
+          <%= f.select :category_id, options_for_select(Category.all.collect {|p| [ p.name, p.id ] }, @job.category_id), :prompt => 'Select One' %>
+        </div>
+      </div>
+      <div id="subcategoryChange">
+      <%# unless @subcategories.blank? %> 
+        <%= render :partial => 'subcategory', :locals => {:job => @job, :subcategories => @subcategories, :f => f } %>
+        <%# else %>
+       <%#= render :partial => 'edit_subcategory', :locals => {:job => @job, :subcategories => @subcategories, :f => f } %>
+      <%# end %> 
+      </div>
+      <div class="actions">
+        <%#= f.submit , :class=>"btn btn-primary" %>
+        <%= f.submit "Submit", :class=>"btn btn-primary" %>
+      </div>
+  </div>
+<% end %>
+<script>
+
+jQuery(function($) {
+
+  // when the #country field changes
+  $("#job_category_id").change(function() {
+    // make a POST call and replace the content
+    var category = $('select#job_category_id :selected').val();
+    
+    if(category == "") category="0";
+    jQuery.get('/jobs/select_subcategory/'+category, function(data){
+        $("#subcategoryChange").html(data);
+    })
+    return false;
+  });
+
+})
+
+</script>
+  
