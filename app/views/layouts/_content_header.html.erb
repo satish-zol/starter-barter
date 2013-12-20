@@ -24,8 +24,8 @@
 	    </div>
 	  </div>
 	</div> -->
-	<div class="logged_in_user">
 		<% if user_signed_in? %>
+	<div class="logged_in_user" style="<%= current_user.first_name.length + current_user.last_name.length >= 10 ? "width: 10px" : "width: 0px" %>">
 			
 			<div class="nav-collapse collapse" style="position: absolute;">
 				<ul class="nav nav-tabs login-box">
@@ -48,8 +48,8 @@
 				</ul>
 			</div><!--/.nav-collapse -->
 
-	    <% end %>          
 	</div>
+	    <% end %>          
 
 	<!-- <nav>
 		<ul id="top_nav">
