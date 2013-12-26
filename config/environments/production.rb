@@ -78,7 +78,7 @@ StartBarter::Application.configure do
     domain: "www.gmail.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "201.abhi@gmail.com",
-    password: "9423432387"
+    user_name: "avi@panhealth.com",
+    password: "panhealth123"
   }
 end
