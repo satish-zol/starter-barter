@@ -64,4 +64,4 @@ gem "jquery-fileupload-rails"
 
 # To use debugger
  #gem 'linecache19'
- gem 'debugger'
+ gem 'debugger', :group => [:development]
