@@ -5,11 +5,7 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-<<<<<<< HEAD
 gem 'mysql2', :group => [:test]
-=======
-gem 'mysql2', :group => [:development, :test]
->>>>>>> a8b09031ada510d864f26b2de5af1f85d74e4700
 gem 'carrierwave'
 gem "rmagick"  
 gem "devise", ">= 2.1.2"
@@ -23,10 +19,7 @@ gem "twitter-bootstrap-rails"
 gem 'libv8'
 gem "cancan"
 gem "less-rails"
-<<<<<<< HEAD
 gem "tire"
-=======
->>>>>>> a8b09031ada510d864f26b2de5af1f85d74e4700
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -39,11 +32,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-<<<<<<< HEAD
 gem 'pg', :group => [:development, :test, :production]
-=======
-gem 'pg', :group => [:production]
->>>>>>> a8b09031ada510d864f26b2de5af1f85d74e4700
 gem 'rspec-rails', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails'
